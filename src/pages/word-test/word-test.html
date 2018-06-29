@@ -1,0 +1,58 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      <span class="w monts">Тест</span>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding id="mainScreen" text-center>
+  <div class="uk-animation-fade">
+    <hr style="background: #777;">
+
+    <div *ngIf="words.length == 0 && started == true">
+      <img src="./assets/imgs/medal.png" alt="">
+      <h2 class="w">Поздравляем! Вы прошли тест!</h2>
+      <h2 class="w">Отмечайте больше слов для повторения, чтобы пройти еще один тест!</h2>
+    </div>
+
+    <h2 class="w" *ngIf="started == false">Вы готовы начать?</h2>
+    <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start('en-ru');">EN -> RU</button>
+    <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start('ru-en');">RU -> EN</button>
+  </div>
+
+  <div *ngIf="randomWord != null && type == 'en-ru'">
+    <ion-card class="c" text-center>
+      <ion-card-header>
+        <span class="w b fz-25 eina">{{ randomWord.enWord }}</span>
+      </ion-card-header>
+    </ion-card>
+    <hr>
+
+    <ion-list>
+      <ion-item color="light" round class="monts b" *ngFor="let btn of buttons" style="margin-top: 35px;" (click)="checkWordENRU(btn);">
+        {{ btn.ruWord }}
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+  <div *ngIf="randomWord != null && type == 'ru-en'">
+    <ion-card class="c" text-center>
+      <ion-card-content>
+        <span class="w b fz-25 monts">{{ randomWord.ruWord }}</span>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-list>
+      <ion-item color="light" round class="monts b" *ngFor="let btn of buttons" style="margin-top: 35px;" (click)="checkWordRUEN(btn);">
+        {{ btn.enWord }}
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+</ion-content>

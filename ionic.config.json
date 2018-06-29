@@ -1,0 +1,8 @@
+{
+  "name": "Wordex",
+  "app_id": "35fb6dd5",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

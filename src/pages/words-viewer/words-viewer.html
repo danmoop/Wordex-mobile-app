@@ -1,0 +1,37 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      <span class="w monts up" (press)="repeatOnceMore();">Wordex</span>
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button style="font-size: 2.7rem;" (click)="findWord();">
+        <ion-icon name="search" style="color: #2cd8d7;"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button style="font-size: 2.7rem;" (click)="presentPrompt();">
+        <ion-icon name="add-circle-outline" style="color: #2cd8d7;"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding id="mainScreen" text-center>
+
+  <h3 class="w monts">{{ hint }}</h3>
+
+  <hr style="background: #34495e;">
+
+  <div *ngIf="words != null && words.length == 0">
+    <hr style="background: #777;">
+    <h2 class="w monts">Упс, кажется здесь пока ничего нет!</h2>
+    <br>
+    <img src="./assets/imgs/empty-box-open.png" alt="">
+    <hr>
+  </div>
+
+
+  <button ion-button color="light" class="monts" full outline style="border-width: 2px; border-radius:25px;" *ngFor="let w of words" (click)="previewWord(w);" (press)="wordActions(w);">{{ w.enWord }} -- {{ w.ruWord }}</button>
+</ion-content>

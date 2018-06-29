@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu" style="color: #2cd8d7;"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end>
+      <button ion-button style="font-size: 2.7rem;" (click)="refreshPage();">
+        <ion-icon name="ios-refresh-outline" style="color: #2cd8d7;"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      <span class="mono w">WORDEX</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding id="mainScreen">
+
+  <ion-card class="c" text-center (click)="viewKnownWords('knownWords');">
+    <ion-card-header>
+      <span class="w b fz-25 monts">Известные слова:</span>
+    </ion-card-header>
+
+    <ion-card-content>
+      <span class="w b fz-40 eina">{{ knownAmount }}</span>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="c" text-center (click)="viewKnownWords('learnedWords');">
+    <ion-card-header>
+      <span class="w b fz-25 monts">Выученные слова:</span>
+    </ion-card-header>
+
+    <ion-card-content>
+      <span class="w b fz-40 eina">{{ learnedAmount }}</span>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="c" text-center (click)="viewKnownWords('toRepeatWords');">
+    <ion-card-header>
+      <span class="w b fz-25 monts">Для повторения:</span>
+    </ion-card-header>
+
+    <ion-card-content>
+      <span class="w b fz-40 eina">{{ toRepeatAmount }}</span>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="c" text-center>
+    <ion-card-header>
+      <span class="w b fz-25 monts">Для изучения:</span>
+    </ion-card-header>
+
+    <ion-card-content>
+      <span class="w b fz-40 eina">{{ toLearnAmount }}</span>
+    </ion-card-content>
+  </ion-card>
+
+  <hr>
+
+  <ion-grid text-center>
+    <ion-row>
+      <ion-col>
+        <button ion-button round outline block style="border-width: 2px;" (click)="navigateTo('LearnScreenPage');" class="monts">Выучить новые</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button color="light" block round outline style="border-width: 2px;" (click)="viewKnownWords('toRepeatWords');" class="monts">Повторить старые</button>
+      </ion-col>
+    </ion-row>
+    <button ion-button color="secondary" round outline style="border-width: 2px;" (click)="navigateTo('WordTestPage');" class="monts">Пройти тест</button>
+  </ion-grid>
+
+</ion-content>

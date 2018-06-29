@@ -1,0 +1,20 @@
+<ion-menu [content]="content">
+  <ion-content text-center>
+    <h2 class="mono">WORDEX</h2>
+    <h6><b class="eina">v. 2.6</b></h6>
+    <ion-list>
+      <ion-item *ngFor="let page of pages" (click)="pushTo(page);" menuClose>
+        <ion-icon name="{{ page.icon }}"></ion-icon><span class="monts b"> {{ page.title }}</span></ion-item>
+    </ion-list>
+
+  </ion-content>
+
+  <ion-footer text-center>
+      <h6 class="eina">Developed by Dan Durnev aka <b><i>danmoop</i></b></h6>
+      <h6 class="eina"><a href="https://github.com/danmoop">Github</a></h6>
+      <h6 class="eina">dandurnev0@gmail.com</h6>
+  </ion-footer>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

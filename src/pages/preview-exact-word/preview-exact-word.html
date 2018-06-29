@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      <span class="w eina up">{{ exactWord.enWord }}</span>
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button style="font-size: 2.7rem;" (click)="editWord();">
+        <ion-icon name="create" style="color: #2cd8d7;"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding id="mainScreen">
+
+  <ion-card class="c" text-center>
+    <ion-card-header>
+      <span class="w b fz-25 eina">{{ exactWord.enWord }}</span>
+    </ion-card-header>
+
+    <ion-card-content>
+      <span class="w b fz-40">{{ exactWord.ruWord }}</span>
+    </ion-card-content>
+
+    <button color="light" ion-button outline (click)="listen();">
+      <ion-icon name="musical-notes"></ion-icon>
+    </button>
+  </ion-card>
+
+</ion-content>
