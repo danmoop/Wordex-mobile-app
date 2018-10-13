@@ -37,10 +37,10 @@
 			var counter = +localStorage.getItem("rateCounter");
 			var rateBool = localStorage.getItem("rateBool");
 
-			if(counter >= 20 && rateBool != "true")
+			if(counter >= 10 && rateBool != "true")
 				this.alertCtrl.create({
 					title: 'Оцените Wordex',
-					subTitle: 'Вы выучили более 20 слов, не желаете ли оценить приложение в магазине?',
+					subTitle: 'Вы выучили более 10 слов, не желаете ли оценить приложение в магазине?',
 					buttons: [
 						{
 							text: 'Да',
@@ -102,10 +102,13 @@
 				var en = data[i].split(" -- ")[0];
 				var ru = data[i].split(" -- ")[1];
 
-				_words.unshift(new Word(ru, en));
+				var _word = new Word(ru, en);
+
+				if(_word != null) _words.unshift(_word);
 			}
 
 			localStorage.setItem("toLearnWords", JSON.stringify(_words));
+			localStorage.setItem("wordsBank", JSON.stringify(_words));
 	  }
 
 	  navigateTo(pageName) {

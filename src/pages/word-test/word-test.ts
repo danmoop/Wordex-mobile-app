@@ -22,7 +22,7 @@ export class WordTestPage {
 
   started: boolean;
   words: any;
-  toLearnWords: any;
+  wordsBank: any;
   learnedWords: any;
 
   buttons = [];
@@ -32,7 +32,7 @@ export class WordTestPage {
   constructor(public loadCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
     this.started = false;
     this.words = JSON.parse(localStorage.getItem("toRepeatWords"));
-    this.toLearnWords = JSON.parse(localStorage.getItem("toLearnWords"));
+    this.wordsBank = JSON.parse(localStorage.getItem("wordsBank"));
     this.learnedWords = JSON.parse(localStorage.getItem("learnedWords"));
   }
 
@@ -42,8 +42,10 @@ export class WordTestPage {
     this.randomWord = this.words[Math.floor(Math.random() * this.words.length)];
 
     for (var i = 0; i < 4; i++) {
-      var index = Math.floor(Math.random() * this.toLearnWords.length);
-      this.buttons.push(this.toLearnWords[index]);
+      var index = Math.floor(Math.random() * this.wordsBank.length);
+      
+      if(this.randomWord != this.wordsBank[index]) this.buttons.push(this.wordsBank[index]);
+      else i--;
     }
 
     var ind = Math.round(Math.random() * 3);
@@ -60,7 +62,7 @@ export class WordTestPage {
   updateWords()
   {
     this.words = JSON.parse(localStorage.getItem("toRepeatWords"));
-    this.toLearnWords = JSON.parse(localStorage.getItem("toLearnWords"));
+    this.wordsBank = JSON.parse(localStorage.getItem("wordsBank"));
     this.learnedWords = JSON.parse(localStorage.getItem("learnedWords"));
     this.buttons = [];
   }

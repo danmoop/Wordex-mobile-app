@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 275:
+/***/ 274:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PreviewExactWordPageModule", function() { return PreviewExactWordPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__preview_exact_word__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__preview_exact_word__ = __webpack_require__(279);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var PreviewExactWordPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 280:
+/***/ 279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -118,7 +118,7 @@ var PreviewExactWordPage = /** @class */ (function () {
     };
     PreviewExactWordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-preview-exact-word',template:/*ion-inline-start:"C:\Users\MineDan\Desktop\ionic\Wordex\src\pages\preview-exact-word\preview-exact-word.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>\n      <span class="w eina up">{{ exactWord.enWord }}</span>\n    </ion-title>\n\n    <ion-buttons end>\n      <button ion-button style="font-size: 2.7rem;" (click)="editWord();">\n        <ion-icon name="create" style="color: #2cd8d7;"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding id="mainScreen">\n\n  <ion-card class="c" text-center>\n    <ion-card-header>\n      <span class="w b fz-25 eina">{{ exactWord.enWord }}</span>\n    </ion-card-header>\n\n    <ion-card-content>\n      <span class="w b fz-40">{{ exactWord.ruWord }}</span>\n    </ion-card-content>\n\n    <button color="light" ion-button outline (click)="listen();">\n      <ion-icon name="musical-notes"></ion-icon>\n    </button>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\MineDan\Desktop\ionic\Wordex\src\pages\preview-exact-word\preview-exact-word.html"*/,
+            selector: 'page-preview-exact-word',template:/*ion-inline-start:"D:\APPS\Wordex-app-master\src\pages\preview-exact-word\preview-exact-word.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>\n      <span class="w eina up">{{ exactWord.enWord }}</span>\n    </ion-title>\n\n    <ion-buttons end>\n      <button ion-button style="font-size: 2.7rem;" (click)="editWord();">\n        <ion-icon name="create" style="color: #2cd8d7;"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding id="mainScreen">\n\n  <ion-card class="c" text-center>\n    <ion-card-header>\n      <span class="w b fz-25 eina">{{ exactWord.enWord }}</span>\n    </ion-card-header>\n\n    <ion-card-content>\n      <span class="w b fz-40">{{ exactWord.ruWord }}</span>\n    </ion-card-content>\n\n    <button color="light" ion-button outline (click)="listen();">\n      <ion-icon name="musical-notes"></ion-icon>\n    </button>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"D:\APPS\Wordex-app-master\src\pages\preview-exact-word\preview-exact-word.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_text_to_speech__["a" /* TextToSpeech */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], PreviewExactWordPage);

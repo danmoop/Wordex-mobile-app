@@ -16,6 +16,11 @@
     <button  *ngIf="started == false" class="monts" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start();">Изучить новые слова!</button>
   </div>
 
+  <div class="uk-animation-fade" *ngIf="finished == true">
+      <img src="./assets/imgs/medal.png" alt="">
+      <h2 class="w">Поздравляем! Вы выучили все слова!</h2>
+  </div>
+
   <ion-card class="c" text-center *ngIf="randomWord != null">
     <ion-card-header>
       <span class="w b fz-40">{{ randomWord.enWord }}</span>

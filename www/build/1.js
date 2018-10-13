@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 273:
+/***/ 275:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WordTestPageModule", function() { return WordTestPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__word_test__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__word_test__ = __webpack_require__(280);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var WordTestPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 278:
+/***/ 280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65,15 +65,18 @@ var WordTestPage = /** @class */ (function () {
         this.buttons = [];
         this.started = false;
         this.words = JSON.parse(localStorage.getItem("toRepeatWords"));
-        this.toLearnWords = JSON.parse(localStorage.getItem("toLearnWords"));
+        this.wordsBank = JSON.parse(localStorage.getItem("wordsBank"));
         this.learnedWords = JSON.parse(localStorage.getItem("learnedWords"));
     }
     WordTestPage.prototype.ionViewDidLoad = function () { };
     WordTestPage.prototype.getNewWord = function () {
         this.randomWord = this.words[Math.floor(Math.random() * this.words.length)];
         for (var i = 0; i < 4; i++) {
-            var index = Math.floor(Math.random() * this.toLearnWords.length);
-            this.buttons.push(this.toLearnWords[index]);
+            var index = Math.floor(Math.random() * this.wordsBank.length);
+            if (this.randomWord != this.wordsBank[index])
+                this.buttons.push(this.wordsBank[index]);
+            else
+                i--;
         }
         var ind = Math.round(Math.random() * 3);
         this.buttons[ind] = this.randomWord;
@@ -85,7 +88,7 @@ var WordTestPage = /** @class */ (function () {
     };
     WordTestPage.prototype.updateWords = function () {
         this.words = JSON.parse(localStorage.getItem("toRepeatWords"));
-        this.toLearnWords = JSON.parse(localStorage.getItem("toLearnWords"));
+        this.wordsBank = JSON.parse(localStorage.getItem("wordsBank"));
         this.learnedWords = JSON.parse(localStorage.getItem("learnedWords"));
         this.buttons = [];
     };
@@ -136,7 +139,7 @@ var WordTestPage = /** @class */ (function () {
     };
     WordTestPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-word-test',template:/*ion-inline-start:"C:\Users\MineDan\Desktop\ionic\Wordex\src\pages\word-test\word-test.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>\n      <span class="w monts">Тест</span>\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding id="mainScreen" text-center>\n  <div class="uk-animation-fade">\n    <hr style="background: #777;">\n\n    <div *ngIf="words.length == 0 && started == true">\n      <img src="./assets/imgs/medal.png" alt="">\n      <h2 class="w">Поздравляем! Вы прошли тест!</h2>\n      <h2 class="w">Отмечайте больше слов для повторения, чтобы пройти еще один тест!</h2>\n    </div>\n\n    <h2 class="w" *ngIf="started == false">Вы готовы начать?</h2>\n    <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start(\'en-ru\');">EN -> RU</button>\n    <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start(\'ru-en\');">RU -> EN</button>\n  </div>\n\n  <div *ngIf="randomWord != null && type == \'en-ru\'">\n    <ion-card class="c" text-center>\n      <ion-card-header>\n        <span class="w b fz-25 eina">{{ randomWord.enWord }}</span>\n      </ion-card-header>\n    </ion-card>\n    <hr>\n\n    <ion-list>\n      <ion-item color="light" round class="monts b" *ngFor="let btn of buttons" style="margin-top: 35px;" (click)="checkWordENRU(btn);">\n        {{ btn.ruWord }}\n      </ion-item>\n    </ion-list>\n  </div>\n\n\n  <div *ngIf="randomWord != null && type == \'ru-en\'">\n    <ion-card class="c" text-center>\n      <ion-card-content>\n        <span class="w b fz-25 monts">{{ randomWord.ruWord }}</span>\n      </ion-card-content>\n    </ion-card>\n    \n    <ion-list>\n      <ion-item color="light" round class="monts b" *ngFor="let btn of buttons" style="margin-top: 35px;" (click)="checkWordRUEN(btn);">\n        {{ btn.enWord }}\n      </ion-item>\n    </ion-list>\n\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\MineDan\Desktop\ionic\Wordex\src\pages\word-test\word-test.html"*/,
+            selector: 'page-word-test',template:/*ion-inline-start:"D:\APPS\Wordex-app-master\src\pages\word-test\word-test.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>\n      <span class="w monts">Тест</span>\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding id="mainScreen" text-center>\n  <div class="uk-animation-fade">\n    <hr style="background: #777;">\n\n    <div *ngIf="words.length == 0 && started == true">\n      <img src="./assets/imgs/medal.png" alt="">\n      <h2 class="w">Поздравляем! Вы прошли тест!</h2>\n      <h2 class="w">Отмечайте больше слов для повторения, чтобы пройти еще один тест!</h2>\n    </div>\n\n    <h2 class="w" *ngIf="started == false">Вы готовы начать?</h2>\n    <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start(\'en-ru\');">EN -> RU</button>\n    <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start(\'ru-en\');">RU -> EN</button>\n  </div>\n\n  <div *ngIf="randomWord != null && type == \'en-ru\'">\n    <ion-card class="c" text-center>\n      <ion-card-header>\n        <span class="w b fz-25 eina">{{ randomWord.enWord }}</span>\n      </ion-card-header>\n    </ion-card>\n    <hr>\n\n    <ion-list>\n      <ion-item color="light" round class="monts b" *ngFor="let btn of buttons" style="margin-top: 35px;" (click)="checkWordENRU(btn);">\n        {{ btn.ruWord }}\n      </ion-item>\n    </ion-list>\n  </div>\n\n\n  <div *ngIf="randomWord != null && type == \'ru-en\'">\n    <ion-card class="c" text-center>\n      <ion-card-content>\n        <span class="w b fz-25 monts">{{ randomWord.ruWord }}</span>\n      </ion-card-content>\n    </ion-card>\n    \n    <ion-list>\n      <ion-item color="light" round class="monts b" *ngFor="let btn of buttons" style="margin-top: 35px;" (click)="checkWordRUEN(btn);">\n        {{ btn.enWord }}\n      </ion-item>\n    </ion-list>\n\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"D:\APPS\Wordex-app-master\src\pages\word-test\word-test.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], WordTestPage);

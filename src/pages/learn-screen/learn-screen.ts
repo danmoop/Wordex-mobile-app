@@ -11,6 +11,7 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
 })
 export class LearnScreenPage {
 
+  finished: boolean;
   started: boolean;
   randomWord: Word;
 
@@ -21,6 +22,11 @@ export class LearnScreenPage {
 
   constructor(private tts: TextToSpeech, public navCtrl: NavController, public navParams: NavParams) {
     this.started = false;
+    if(JSON.parse(localStorage.getItem("toLearnWords")).length == 0)
+    {
+      this.finished = true;
+      this.started = null;
+    }
   }
 
   ionViewDidLoad() {
@@ -47,7 +53,13 @@ export class LearnScreenPage {
 
   getNewWord()
   {
-    this.randomWord = this.toLearnWords[Math.round(Math.random() * this.toLearnWords.length)];
+
+    if(JSON.parse(localStorage.getItem("toLearnWords")).length == 0)
+    {
+      this.finished = true;
+      this.started = null;
+    }
+    this.randomWord = this.toLearnWords[Math.floor(Math.random() * this.toLearnWords.length)];
   }
 
   toBeRepeated()
