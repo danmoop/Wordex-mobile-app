@@ -1,4 +1,4 @@
-<ion-header>
+  <ion-header>
 
   <ion-navbar>
     <ion-title>
@@ -32,6 +32,7 @@
     <hr>
   </div>
 
-
-  <button ion-button color="light" class="monts" full outline style="border-width: 2px; border-radius:25px;" *ngFor="let w of words" (click)="previewWord(w);" (press)="wordActions(w);">{{ w.enWord }} -- {{ w.ruWord }}</button>
+  <button ion-button color="light" class="monts" full outline style="border-width: 2px; border-radius:25px; white-space: normal;" *ngFor="let w of words" (click)="previewWord(w);" (press)="wordActions(w);">
+    {{ w.enWord }} -- {{ w.ruWord }}
+  </button>
 </ion-content>

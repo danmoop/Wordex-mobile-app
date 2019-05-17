@@ -19,9 +19,16 @@
       <h2 class="w">Отмечайте больше слов для повторения, чтобы пройти еще один тест!</h2>
     </div>
 
-    <h2 class="w" *ngIf="started == false">Вы готовы начать?</h2>
-    <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start('en-ru');">EN -> RU</button>
-    <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start('ru-en');">RU -> EN</button>
+    <div *ngIf="words.length == 0 && !started">
+      <img src="./assets/imgs/empty-box-open.png" alt="">
+      <h2 class="w">Нет слов для тестирования! Добавьте несколько в секцию "Для повторения" и возвращайтесь!</h2>
+    </div>
+
+    <div *ngIf="words.length != 0 && !started">
+      <h2 class="w" *ngIf="started == false">Вы готовы начать?</h2>
+      <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start('en-ru');">EN -> RU</button>
+      <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start('ru-en');">RU -> EN</button>
+    </div>
   </div>
 
   <div *ngIf="randomWord != null && type == 'en-ru'">

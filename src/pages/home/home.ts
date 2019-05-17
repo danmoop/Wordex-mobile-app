@@ -65,20 +65,12 @@
 
 
 	  refreshWords() {
-	    let loading = this.loadCtrl.create({
-	      content: 'Пожалуйста, подождите'
-	    });
-
-	    loading.present().then(() => {
 	      try {
 	        this.toLearnAmount = JSON.parse(localStorage.getItem("toLearnWords")).length;
 	        this.knownAmount = JSON.parse(localStorage.getItem("knownWords")).length;
 	        this.toRepeatAmount = JSON.parse(localStorage.getItem("toRepeatWords")).length;
 	        this.learnedAmount = JSON.parse(localStorage.getItem("learnedWords")).length;
 	      } catch (err) {}
-	    }).then(() => {
-	      loading.dismiss();
-	    });
 	  }
 
 	  ls(key) {

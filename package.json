@@ -15,7 +15,7 @@
     "@angular/animations": "5.2.11",
     "@angular/common": "5.2.11",
     "@angular/compiler": "5.2.11",
-    "@angular/compiler-cli": "5.2.11",
+    "@angular/compiler-cli": "^7.2.15",
     "@angular/core": "5.2.11",
     "@angular/forms": "5.2.11",
     "@angular/http": "5.2.11",
@@ -27,10 +27,10 @@
     "@ionic-native/text-to-speech": "^4.8.0",
     "@ionic/pro": "1.0.20",
     "@ionic/storage": "2.1.3",
-    "cordova-android": "7.0.0",
+    "cordova-android": "^8.0.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
-    "cordova-plugin-ionic-webview": "^1.2.1",
+    "cordova-plugin-ionic-webview": "^4.0.1",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-tts": "^0.2.3",
     "cordova-plugin-whitelist": "^1.3.3",
@@ -42,7 +42,7 @@
     "zone.js": "0.8.26"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.1.10",
+    "@ionic/app-scripts": "^3.2.3",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project",

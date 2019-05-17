@@ -124,21 +124,11 @@ export class WordsViewerPage {
   }
 
   refreshWords() {
-
-    let loading = this.loadCtrl.create({
-      content: 'Пожалуйста, подождите'
-    });
-
-    loading.present().then(() => {
       this.words = JSON.parse(localStorage.getItem(this.wordsType));
 
       if (this.wordsType == "knownWords") this.hint = "Известные слова";
       else if (this.wordsType == "learnedWords") this.hint = "Изученные слова";
       else if (this.wordsType == "toRepeatWords") this.hint = "Слова для повторного изучения";
-
-    }).then(() => {
-      loading.dismiss();
-    });
   }
 
   previewWord(word) {
