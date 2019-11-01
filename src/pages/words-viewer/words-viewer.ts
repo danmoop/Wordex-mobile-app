@@ -1,32 +1,30 @@
-import {
-  Component
-} from '@angular/core';
-import {
-  IonicPage,
-  NavController,
-  NavParams,
-  LoadingController,
-  AlertController
-} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { HomePage } from './../home/home';
 import Word from './../../model/Word';
-
-import {
-  HomePage
-} from './../home/home';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-//import { platform } from 'os';
 
 @IonicPage()
 @Component({
   selector: 'page-words-viewer',
   templateUrl: 'words-viewer.html',
 })
+
 export class WordsViewerPage {
 
+  /**
+   * @param wordsType is a type of words - known words, words for repeating, etc.
+   */
   wordsType: any;
+
+  /**
+   * @param words is an array of words in a corresponding array (array of known words, learned, etc.)
+   */
   words: any;
-  hint: string;
-  p_title: string;
+
+  /**
+   * @param wordTypeHeader is a header for each type of words, kind of identification of what words you are looking at
+   */
+  wordTypeHeader: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public loadCtrl: LoadingController) {}
 
@@ -34,11 +32,14 @@ export class WordsViewerPage {
     this.wordsType = this.navParams.data;
     this.refreshWords();
 
-    if (this.wordsType == "toRepeatWords") this.p_title = "Потворение";
-    if (this.wordsType == "learnedWords") this.p_title = "Выученные";
-    if (this.wordsType == "knownWords") this.p_title = "Известные";
+    if (this.wordsType == "knownWords") this.wordTypeHeader = "Известные слова";
+    else if (this.wordsType == "learnedWords") this.wordTypeHeader = "Изученные слова";
+    else if (this.wordsType == "toRepeatWords") this.wordTypeHeader = "Слова для повторного изучения";
   }
 
+  /**
+   * @return a word from a huge list if there is one -> it will display both translations and pronunciation
+   */
   findWord() {
     let alert = this.alertCtrl.create({
       title: 'Найти слово',
@@ -81,6 +82,10 @@ export class WordsViewerPage {
     alert.present();
   }
 
+  /**
+   * @param word is word that is not found
+   * @return an alert telling that there is not such word 
+   */
   wordNotFound(word) {
     this.alertCtrl.create({
       title: 'Ошибка',
@@ -89,6 +94,10 @@ export class WordsViewerPage {
     }).present();
   }
 
+  /**
+   * @param word is a word that is already on the list
+   * @return an alert telling that there is already such word added before
+   */
   wordExists(word) {
     this.alertCtrl.create({
       title: 'Ошибка',
@@ -97,6 +106,9 @@ export class WordsViewerPage {
     }).present();
   }
 
+  /**
+   * move all words from the current list to list for repeating
+   */
   repeatOnceMore() {
     this.alertCtrl.create({
       title: '<span class="monts">Повторить слова</span>',
@@ -123,14 +135,17 @@ export class WordsViewerPage {
     }).present();
   }
 
+  /**
+   * @param this.words will be refreshed
+   */
   refreshWords() {
       this.words = JSON.parse(localStorage.getItem(this.wordsType));
-
-      if (this.wordsType == "knownWords") this.hint = "Известные слова";
-      else if (this.wordsType == "learnedWords") this.hint = "Изученные слова";
-      else if (this.wordsType == "toRepeatWords") this.hint = "Слова для повторного изучения";
   }
 
+  /**
+   * @param word is word that will be previewed
+   * @return a new screen with a chosen word, where there are both translations
+   */
   previewWord(word) {
     var _sender = {
       word: word,
@@ -140,9 +155,12 @@ export class WordsViewerPage {
     this.navCtrl.push('PreviewExactWordPage', _sender);
   }
 
+  /**
+   * display an alert message where you can manually add a word to the list
+   */
   presentPrompt() {
     let alert = this.alertCtrl.create({
-      title: 'Добавить словл',
+      title: 'Добавить слово',
       inputs: [{
           name: 'enWord',
           placeholder: 'Английское слово'
@@ -172,6 +190,9 @@ export class WordsViewerPage {
     alert.present();
   }
 
+  /**
+   * @return an alert with 2 options - delete a word or move it to the list for repeating
+   */
   wordActions(word) {
     this.alertCtrl.create({
       title: 'Выберете действие',
@@ -218,8 +239,11 @@ export class WordsViewerPage {
     }).present();
   }
 
+  /**
+   * @param word is a word typeof string
+   * @return same string but in 'eina' font
+   */
   eina(word) {
     return '<span class="eina">' + word + '</span>';
   }
-
 }

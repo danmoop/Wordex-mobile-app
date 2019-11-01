@@ -1,113 +1,119 @@
-	import {
-	  Component
-	} from '@angular/core';
-	import {
-	  NavController,
-	  AlertController,
-	  LoadingController,
-	  App
-	} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, AlertController, LoadingController, App } from 'ionic-angular';
 
-	//import {  homedir} from 'os';
-	import words from './../../model/wordsbase';
-	import Word from './../../model/Word';
+import words from './../../model/wordsbase';
+import Word from './../../model/Word';
 
-	@Component({
-	  selector: 'page-home',
-	  templateUrl: 'home.html'
-	})
-	export class HomePage {
+@Component({
+    selector: 'page-home',
+    templateUrl: 'home.html'
+})
 
-	  toLearnAmount = 0;
-	  knownAmount = 0;
-	  toRepeatAmount = 0;
-	  learnedAmount = 0;
+export class HomePage {
 
-	  constructor(public appCtrl: App, public navCtrl: NavController, public alertCtrl: AlertController, public loadCtrl: LoadingController) {}
+	/** 
+	 * @param toLearnAmount is an amount of words that should be learned in future 
+	 */
+	toLearnAmount = 0;
+	
+	/**
+	 * @param knownAmount is an amount of words user already knows
+	 */
+	knownAmount = 0;
+	
+	/**
+	 * @param toRepeatAmount are words user has already seen but not learned, they should be repeated
+	 */
+	toRepeatAmount = 0;
+	
+	/**
+	 * @param learnedAmount is an amount of words user has learned during using the app
+	 */
+    learnedAmount = 0;
 
-	  ionViewDidEnter() {
-			this.refreshWords();
+    constructor(public appCtrl: App, public navCtrl: NavController, public alertCtrl: AlertController, public loadCtrl: LoadingController) {}
 
-			if(+localStorage.getItem("words_imported") == 0)
-			{
-				this.importWords();
-				localStorage.setItem("words_imported", "1");
-			}
+	/**
+	 * @function ionViewDidEnter is executed when application is opened
+	 */
+    ionViewDidEnter() {
+        this.refreshWords();
 
-			var counter = +localStorage.getItem("rateCounter");
-			var rateBool = localStorage.getItem("rateBool");
+        if (+localStorage.getItem("words_imported") == 0) {
+            this.importWords();
+            localStorage.setItem("words_imported", "1");
+        }
 
-			if(counter >= 10 && rateBool != "true")
-				this.alertCtrl.create({
-					title: 'Оцените Wordex',
-					subTitle: 'Вы выучили более 10 слов, не желаете ли оценить приложение в магазине?',
-					buttons: [
-						{
-							text: 'Да',
-							handler: data =>{
-								localStorage.setItem("rateBool", "true");
-								this.alertCtrl.create({
-									title: '¯\\_(ツ)_/¯',
-									subTitle: 'Вам повезло, никакой ссылки еще нет',
-									buttons: ['OK']
-								}).present();
-							}
-						},
-						{
-							text: 'Нет',
-							handler: data =>{
-								localStorage.setItem("rateBool", "true");
-							}
-						}
-					]
-				}).present();
-	  }
+        var counter = +localStorage.getItem("rateCounter");
+        var rateBool = localStorage.getItem("rateBool");
+    }
+
+	/**
+	 * @function refreshWords refreshes counters to corresponding words
+	 */
+    refreshWords() {
+        try {
+            this.toLearnAmount = JSON.parse(localStorage.getItem("toLearnWords")).length;
+            this.knownAmount = JSON.parse(localStorage.getItem("knownWords")).length;
+            this.toRepeatAmount = JSON.parse(localStorage.getItem("toRepeatWords")).length;
+            this.learnedAmount = JSON.parse(localStorage.getItem("learnedWords")).length;
+        } catch (err) {}
+    }
+
+	/**
+	 * @param key is a key that will be obtained from a localstorage
+	 * @return value corresponding to a key from a localstorage
+	 */
+    ls(key) {
+        var value = localStorage.getItem(key);
+        return value;
+    }
+
+	/**
+	 * @return home page
+	 */
+    refreshPage() {
+        this.navCtrl.setRoot(HomePage);
+    }
+
+	/**
+	 * @function importWords imports words from a database
+	 */
+    importWords() {
+        localStorage.setItem("toRepeatWords", "[]");
+        localStorage.setItem("knownWords", "[]");
+        localStorage.setItem("learnedWords", "[]");
+
+        var data = words.split("\n");
+        var _words = [];
+
+        for (var i = 0; i < data.length; i++) {
+            var en = data[i].split(" -- ")[0];
+            var ru = data[i].split(" -- ")[1];
+
+            var _word = new Word(ru, en);
+
+            if (_word != null) _words.unshift(_word);
+        }
+
+        localStorage.setItem("toLearnWords", JSON.stringify(_words));
+        localStorage.setItem("wordsBank", JSON.stringify(_words));
+    }
 
 
-	  refreshWords() {
-	      try {
-	        this.toLearnAmount = JSON.parse(localStorage.getItem("toLearnWords")).length;
-	        this.knownAmount = JSON.parse(localStorage.getItem("knownWords")).length;
-	        this.toRepeatAmount = JSON.parse(localStorage.getItem("toRepeatWords")).length;
-	        this.learnedAmount = JSON.parse(localStorage.getItem("learnedWords")).length;
-	      } catch (err) {}
-	  }
+	/**
+	 * @param pageName is page where user will be redirected
+	 * @return redirect to a page
+	 */
+	navigateTo(pageName) {
+        this.navCtrl.push(pageName);
+    }
 
-	  ls(key) {
-	    var key1 = localStorage.getItem(key);
-	    return key1;
-	  }
-
-	  refreshPage() {
-	    this.navCtrl.setRoot(HomePage);
-	  }
-
-	  importWords() {
-			localStorage.setItem("toRepeatWords", "[]");
-			localStorage.setItem("knownWords", "[]");
-			localStorage.setItem("learnedWords", "[]");
-
-			var data = words.split("\n");
-			var _words = [];
-
-			for (var i = 0; i < data.length; i++) {
-				var en = data[i].split(" -- ")[0];
-				var ru = data[i].split(" -- ")[1];
-
-				var _word = new Word(ru, en);
-
-				if(_word != null) _words.unshift(_word);
-			}
-
-			localStorage.setItem("toLearnWords", JSON.stringify(_words));
-			localStorage.setItem("wordsBank", JSON.stringify(_words));
-	  }
-
-	  navigateTo(pageName) {
-	    this.navCtrl.push(pageName);
-	  }
-
-	  viewKnownWords(words) {
-	    this.appCtrl.getRootNav().push('WordsViewerPage', words);
-	  }
-	}
+	/**
+	 * @param words is an array of words user already knows
+	 * @return page where all known words are displayed
+	 */
+    viewKnownWords(words) {
+        this.appCtrl.getRootNav().push('WordsViewerPage', words);
+    }
+}

@@ -51,7 +51,9 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-tts": {}
     },

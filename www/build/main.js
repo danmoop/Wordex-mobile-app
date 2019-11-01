@@ -22,7 +22,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-//import {  homedir} from 'os';
 
 
 var HomePage = /** @class */ (function () {
@@ -31,14 +30,28 @@ var HomePage = /** @class */ (function () {
         this.navCtrl = navCtrl;
         this.alertCtrl = alertCtrl;
         this.loadCtrl = loadCtrl;
+        /**
+         * @param toLearnAmount is an amount of words that should be learned in future
+         */
         this.toLearnAmount = 0;
+        /**
+         * @param knownAmount is an amount of words user already knows
+         */
         this.knownAmount = 0;
+        /**
+         * @param toRepeatAmount are words user has already seen but not learned, they should be repeated
+         */
         this.toRepeatAmount = 0;
+        /**
+         * @param learnedAmount is an amount of words user has learned during using the app
+         */
         this.learnedAmount = 0;
     }
     HomePage_1 = HomePage;
+    /**
+     * @function ionViewDidEnter is executed when application is opened
+     */
     HomePage.prototype.ionViewDidEnter = function () {
-        var _this = this;
         this.refreshWords();
         if (+localStorage.getItem("words_imported") == 0) {
             this.importWords();
@@ -46,31 +59,10 @@ var HomePage = /** @class */ (function () {
         }
         var counter = +localStorage.getItem("rateCounter");
         var rateBool = localStorage.getItem("rateBool");
-        if (counter >= 10 && rateBool != "true")
-            this.alertCtrl.create({
-                title: 'Оцените Wordex',
-                subTitle: 'Вы выучили более 10 слов, не желаете ли оценить приложение в магазине?',
-                buttons: [
-                    {
-                        text: 'Да',
-                        handler: function (data) {
-                            localStorage.setItem("rateBool", "true");
-                            _this.alertCtrl.create({
-                                title: '¯\\_(ツ)_/¯',
-                                subTitle: 'Вам повезло, никакой ссылки еще нет',
-                                buttons: ['OK']
-                            }).present();
-                        }
-                    },
-                    {
-                        text: 'Нет',
-                        handler: function (data) {
-                            localStorage.setItem("rateBool", "true");
-                        }
-                    }
-                ]
-            }).present();
     };
+    /**
+     * @function refreshWords refreshes counters to corresponding words
+     */
     HomePage.prototype.refreshWords = function () {
         try {
             this.toLearnAmount = JSON.parse(localStorage.getItem("toLearnWords")).length;
@@ -80,13 +72,23 @@ var HomePage = /** @class */ (function () {
         }
         catch (err) { }
     };
+    /**
+     * @param key is a key that will be obtained from a localstorage
+     * @return value corresponding to a key from a localstorage
+     */
     HomePage.prototype.ls = function (key) {
-        var key1 = localStorage.getItem(key);
-        return key1;
+        var value = localStorage.getItem(key);
+        return value;
     };
+    /**
+     * @return home page
+     */
     HomePage.prototype.refreshPage = function () {
         this.navCtrl.setRoot(HomePage_1);
     };
+    /**
+     * @function importWords imports words from a database
+     */
     HomePage.prototype.importWords = function () {
         localStorage.setItem("toRepeatWords", "[]");
         localStorage.setItem("knownWords", "[]");
@@ -103,15 +105,23 @@ var HomePage = /** @class */ (function () {
         localStorage.setItem("toLearnWords", JSON.stringify(_words));
         localStorage.setItem("wordsBank", JSON.stringify(_words));
     };
+    /**
+     * @param pageName is page where user will be redirected
+     * @return redirect to a page
+     */
     HomePage.prototype.navigateTo = function (pageName) {
         this.navCtrl.push(pageName);
     };
+    /**
+     * @param words is an array of words user already knows
+     * @return page where all known words are displayed
+     */
     HomePage.prototype.viewKnownWords = function (words) {
         this.appCtrl.getRootNav().push('WordsViewerPage', words);
     };
     HomePage = HomePage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"D:\Wordex-app\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-buttons start>\n      <button ion-button menuToggle>\n        <ion-icon name="menu" style="color: #2cd8d7;"></ion-icon>\n      </button>\n    </ion-buttons>\n\n    <ion-buttons end>\n      <button ion-button style="font-size: 2.7rem;" (click)="refreshPage();">\n        <ion-icon name="ios-refresh-outline" style="color: #2cd8d7;"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title>\n      <span class="mono w">WORDEX</span>\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding id="mainScreen">\n\n  <ion-card class="c" text-center (click)="viewKnownWords(\'knownWords\');">\n    <ion-card-header>\n      <span class="w b fz-25 monts">Известные слова:</span>\n    </ion-card-header>\n\n    <ion-card-content>\n      <span class="w b fz-40 eina">{{ knownAmount }}</span>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card class="c" text-center (click)="viewKnownWords(\'learnedWords\');">\n    <ion-card-header>\n      <span class="w b fz-25 monts">Выученные слова:</span>\n    </ion-card-header>\n\n    <ion-card-content>\n      <span class="w b fz-40 eina">{{ learnedAmount }}</span>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card class="c" text-center (click)="viewKnownWords(\'toRepeatWords\');">\n    <ion-card-header>\n      <span class="w b fz-25 monts">Для повторения:</span>\n    </ion-card-header>\n\n    <ion-card-content>\n      <span class="w b fz-40 eina">{{ toRepeatAmount }}</span>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card class="c" text-center>\n    <ion-card-header>\n      <span class="w b fz-25 monts">Для изучения:</span>\n    </ion-card-header>\n\n    <ion-card-content>\n      <span class="w b fz-40 eina">{{ toLearnAmount }}</span>\n    </ion-card-content>\n  </ion-card>\n\n  <hr>\n\n  <ion-grid text-center>\n    <ion-row>\n      <ion-col>\n        <button ion-button round outline block style="border-width: 2px;" (click)="navigateTo(\'LearnScreenPage\');" class="monts">Выучить новые</button>\n      </ion-col>\n      <ion-col>\n        <button ion-button color="light" block round outline style="border-width: 2px;" (click)="viewKnownWords(\'toRepeatWords\');" class="monts">Повторить старые</button>\n      </ion-col>\n    </ion-row>\n    <button ion-button color="secondary" round outline style="border-width: 2px;" (click)="navigateTo(\'WordTestPage\');" class="monts">Пройти тест</button>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"D:\Wordex-app\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"D:\Apps\Wordex\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-buttons start>\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu" style="color: #2cd8d7;"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n\n\n    <ion-buttons end>\n\n      <button ion-button style="font-size: 2.7rem;" (click)="refreshPage();">\n\n        <ion-icon name="ios-refresh-outline" style="color: #2cd8d7;"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-title>\n\n      <span class="mono w">WORDEX</span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding id="mainScreen">\n\n\n\n  <ion-card class="c" text-center (click)="viewKnownWords(\'knownWords\');">\n\n    <ion-card-header>\n\n      <span class="w b fz-25 monts">Известные слова:</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-40 eina">{{ knownAmount }}</span>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card class="c" text-center (click)="viewKnownWords(\'learnedWords\');">\n\n    <ion-card-header>\n\n      <span class="w b fz-25 monts">Выученные слова:</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-40 eina">{{ learnedAmount }}</span>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card class="c" text-center (click)="viewKnownWords(\'toRepeatWords\');">\n\n    <ion-card-header>\n\n      <span class="w b fz-25 monts">Для повторения:</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-40 eina">{{ toRepeatAmount }}</span>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card class="c" text-center>\n\n    <ion-card-header>\n\n      <span class="w b fz-25 monts">Для изучения:</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-40 eina">{{ toLearnAmount }}</span>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <hr>\n\n\n\n  <ion-grid text-center>\n\n    <ion-row>\n\n      <ion-col>\n\n        <button ion-button round outline block style="border-width: 2px;" (click)="navigateTo(\'LearnScreenPage\');" class="monts">Выучить новые</button>\n\n      </ion-col>\n\n      <ion-col>\n\n        <button ion-button color="light" block round outline style="border-width: 2px;" (click)="viewKnownWords(\'toRepeatWords\');" class="monts">Повторить старые</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <button ion-button color="secondary" round outline style="border-width: 2px;" (click)="navigateTo(\'WordTestPage\');" class="monts">Пройти тест</button>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Apps\Wordex\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */]])
     ], HomePage);
@@ -153,11 +163,11 @@ var map = {
 		3
 	],
 	"../pages/preview-exact-word/preview-exact-word.module": [
-		274,
+		275,
 		2
 	],
 	"../pages/word-test/word-test.module": [
-		275,
+		274,
 		1
 	],
 	"../pages/words-viewer/words-viewer.module": [
@@ -255,8 +265,8 @@ var AppModule = /** @class */ (function () {
                     links: [
                         { loadChildren: '../pages/help-screen/help-screen.module#HelpScreenPageModule', name: 'HelpScreenPage', segment: 'help-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/learn-screen/learn-screen.module#LearnScreenPageModule', name: 'LearnScreenPage', segment: 'learn-screen', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/preview-exact-word/preview-exact-word.module#PreviewExactWordPageModule', name: 'PreviewExactWordPage', segment: 'preview-exact-word', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/word-test/word-test.module#WordTestPageModule', name: 'WordTestPage', segment: 'word-test', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/preview-exact-word/preview-exact-word.module#PreviewExactWordPageModule', name: 'PreviewExactWordPage', segment: 'preview-exact-word', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/words-viewer/words-viewer.module#WordsViewerPageModule', name: 'WordsViewerPage', segment: 'words-viewer', priority: 'low', defaultHistory: [] }
                     ]
                 })
@@ -8350,7 +8360,7 @@ var MyApp = /** @class */ (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\Wordex-app\src\app\app.html"*/'<ion-menu [content]="content">\n  <ion-content text-center>\n    <h2 class="mono">WORDEX</h2>\n    <h6><b class="eina">v. 3.0</b></h6>\n    <ion-list>\n      <ion-item *ngFor="let page of pages" (click)="pushTo(page);" menuClose>\n        <ion-icon name="{{ page.icon }}"></ion-icon><span class="monts b"> {{ page.title }}</span></ion-item>\n    </ion-list>\n\n  </ion-content>\n\n  <ion-footer text-center>\n      <h6 class="eina"><a href="https://github.com/danmoop">Github</a></h6>\n      <h6 class="eina">dandurnev1@gmail.com</h6>\n  </ion-footer>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"D:\Wordex-app\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\Apps\Wordex\src\app\app.html"*/'<ion-menu [content]="content">\n\n  <ion-content text-center>\n\n    <h2 class="mono">WORDEX</h2>\n\n    <h6><b class="eina">v. 3.0</b></h6>\n\n    <ion-list>\n\n      <ion-item *ngFor="let page of pages" (click)="pushTo(page);" menuClose>\n\n        <ion-icon name="{{ page.icon }}"></ion-icon><span class="monts b"> {{ page.title }}</span></ion-item>\n\n    </ion-list>\n\n\n\n  </ion-content>\n\n\n\n  <ion-footer text-center>\n\n      <h6 class="eina"><a href="https://github.com/danmoop">Github</a></h6>\n\n      <h6 class="eina">dandurnev1@gmail.com</h6>\n\n  </ion-footer>\n\n\n\n</ion-menu>\n\n\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"D:\Apps\Wordex\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);

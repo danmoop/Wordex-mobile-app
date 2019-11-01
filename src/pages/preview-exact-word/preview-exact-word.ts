@@ -22,7 +22,14 @@ import { HomePage } from '../home/home';
 })
 export class PreviewExactWordPage {
 
+  /**
+   * @param exactWord is a word that is being displayed on a screen
+   */
   exactWord: any;
+
+  /**
+   * @param type is a word type - word you already know, word for repeating, etc.
+   */
   type: string;
 
   constructor(public navCtrl: NavController, public appCtrl: App, public navParams: NavParams, private tts: TextToSpeech, private alertCtrl: AlertController) {
@@ -34,12 +41,19 @@ export class PreviewExactWordPage {
     console.log('ionViewDidLoad PreviewExactWordPage');
   }
 
+  /**
+   * @function listen allows to listen the pronunciation of a word displayed
+   */
   listen() {
     this.tts.speak(this.exactWord.enWord)
       .then(() => console.log('Success'))
       .catch((reason: any) => console.log(reason));
   }
 
+
+  /**
+   * @function editWord allows you edit word -> change both translations
+   */
   editWord() {
     let alert = this.alertCtrl.create({
       title: this.eina('Edit <i>' + this.exactWord.enWord + "</i>"),
@@ -80,6 +94,10 @@ export class PreviewExactWordPage {
     alert.present();
   }
 
+  /**
+   * @param word is a word typeof string
+   * @return same string but in 'eina' font
+   */
   eina(word) {
     return '<span class="eina">' + word + '</span>';
   }

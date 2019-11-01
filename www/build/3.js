@@ -72,6 +72,10 @@ var LearnScreenPage = /** @class */ (function () {
     LearnScreenPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad LearnScreenPage');
     };
+    /**
+     * @function start obtained all the arrays of words
+     * @return a random word that will be displayed
+     */
     LearnScreenPage.prototype.start = function () {
         this.started = true;
         this.toLearnWords = JSON.parse(localStorage.getItem("toLearnWords"));
@@ -80,11 +84,17 @@ var LearnScreenPage = /** @class */ (function () {
         this.learnedWords = JSON.parse(localStorage.getItem("learnedWords"));
         this.randomWord = this.toLearnWords[Math.round(Math.random() * this.toLearnWords.length)];
     };
+    /**
+     * @function listen allows to listen the pronunciation of a word displayed
+     */
     LearnScreenPage.prototype.listen = function () {
         this.tts.speak(this.randomWord.enWord)
             .then(function () { return console.log('Success'); })
             .catch(function (reason) { return console.log(reason); });
     };
+    /**
+     * @return new random word that will be displayed
+     */
     LearnScreenPage.prototype.getNewWord = function () {
         if (JSON.parse(localStorage.getItem("toLearnWords")).length == 0) {
             this.finished = true;
@@ -92,6 +102,10 @@ var LearnScreenPage = /** @class */ (function () {
         }
         this.randomWord = this.toLearnWords[Math.floor(Math.random() * this.toLearnWords.length)];
     };
+    /**
+     * a displayed word will be moved to 'toRepeatWords' array
+     * @return new random word that will be displayed
+     */
     LearnScreenPage.prototype.toBeRepeated = function () {
         var index = this.toLearnWords.indexOf(this.randomWord);
         this.toLearnWords.splice(index, 1);
@@ -100,6 +114,10 @@ var LearnScreenPage = /** @class */ (function () {
         localStorage.setItem("toRepeatWords", JSON.stringify(this.toRepeatWords));
         this.getNewWord();
     };
+    /**
+     * a displayed word will be moved to 'learnedWords' array
+     * @return new random word that will be displayed
+     */
     LearnScreenPage.prototype.wordIsLearned = function () {
         var index = this.toLearnWords.indexOf(this.randomWord);
         this.toLearnWords.splice(index, 1);
@@ -108,6 +126,10 @@ var LearnScreenPage = /** @class */ (function () {
         localStorage.setItem("learnedWords", JSON.stringify(this.learnedWords));
         this.getNewWord();
     };
+    /**
+     * a displayed word will be moved to 'knownWords' array
+     * @return new random word that will be displayed
+     */
     LearnScreenPage.prototype.wordIsKnown = function () {
         var index = this.toLearnWords.indexOf(this.randomWord);
         this.toLearnWords.splice(index, 1);
@@ -118,7 +140,7 @@ var LearnScreenPage = /** @class */ (function () {
     };
     LearnScreenPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-learn-screen',template:/*ion-inline-start:"D:\Wordex-app\src\pages\learn-screen\learn-screen.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>\n      <span class="w monts">Изучение</span>\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n<hr>\n\n\n<ion-content padding id="mainScreen" text-center>\n  <div class="uk-animation-fade">\n    <h2 class="w" *ngIf="started == false">Вы готовы начать?</h2>\n    <button  *ngIf="started == false" class="monts" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start();">Изучить новые слова!</button>\n  </div>\n\n  <div class="uk-animation-fade" *ngIf="finished == true">\n      <img src="./assets/imgs/medal.png" alt="">\n      <h2 class="w">Поздравляем! Вы выучили все слова!</h2>\n  </div>\n\n  <ion-card class="c" text-center *ngIf="randomWord != null">\n    <ion-card-header>\n      <span class="w b fz-40">{{ randomWord.enWord }}</span>\n    </ion-card-header>\n\n    <ion-card-content>\n      <span class="w b fz-25">{{ randomWord.ruWord }}</span>\n      <br><br>\n      <button color="light" ion-button outline (click)="listen();">\n        <ion-icon name="musical-notes"></ion-icon>\n      </button>\n    </ion-card-content>\n  </ion-card>\n\n  <hr>\n\n  <button *ngIf="started == true" class="monts" block ion-button color="danger" round outline style="border-width: 2px; margin-top: 40px;" (click)="toBeRepeated();"><ion-icon name="timer"></ion-icon> На повторение</button>\n  <button *ngIf="started == true" class="monts" block ion-button color="secondary" round outline style="border-width: 2px; margin-top: 40px;" (click)="wordIsLearned();"><ion-icon name="checkmark-circle-outline"></ion-icon> Я выучил(а) это</button>\n  <button *ngIf="started == true" class="monts" block ion-button color="light" round outline style="border-width: 2px; margin-top: 40px;" (click)="wordIsKnown();"><ion-icon name="book"></ion-icon> Я знаю это</button>\n\n</ion-content>\n'/*ion-inline-end:"D:\Wordex-app\src\pages\learn-screen\learn-screen.html"*/,
+            selector: 'page-learn-screen',template:/*ion-inline-start:"D:\Apps\Wordex\src\pages\learn-screen\learn-screen.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>\n\n      <span class="w monts">Изучение</span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n<hr>\n\n\n\n\n\n<ion-content padding id="mainScreen" text-center>\n\n  <div class="uk-animation-fade">\n\n    <h2 class="w" *ngIf="started == false">Вы готовы начать?</h2>\n\n    <button  *ngIf="started == false" class="monts" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start();">Изучить новые слова!</button>\n\n  </div>\n\n\n\n  <div class="uk-animation-fade" *ngIf="finished == true">\n\n      <img src="./assets/imgs/medal.png" alt="">\n\n      <h2 class="w">Поздравляем! Вы выучили все слова!</h2>\n\n  </div>\n\n\n\n  <ion-card class="c" text-center *ngIf="randomWord != null">\n\n    <ion-card-header>\n\n      <span class="w b fz-40">{{ randomWord.enWord }}</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-25">{{ randomWord.ruWord }}</span>\n\n      <br><br>\n\n      <button color="light" ion-button outline (click)="listen();">\n\n        <ion-icon name="musical-notes"></ion-icon>\n\n      </button>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <hr>\n\n\n\n  <button *ngIf="started == true" class="monts" block ion-button color="danger" round outline style="border-width: 2px; margin-top: 40px;" (click)="toBeRepeated();"><ion-icon name="timer"></ion-icon> На повторение</button>\n\n  <button *ngIf="started == true" class="monts" block ion-button color="secondary" round outline style="border-width: 2px; margin-top: 40px;" (click)="wordIsLearned();"><ion-icon name="checkmark-circle-outline"></ion-icon> Я выучил(а) это</button>\n\n  <button *ngIf="started == true" class="monts" block ion-button color="light" round outline style="border-width: 2px; margin-top: 40px;" (click)="wordIsKnown();"><ion-icon name="book"></ion-icon> Я знаю это</button>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Apps\Wordex\src\pages\learn-screen\learn-screen.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_text_to_speech__["a" /* TextToSpeech */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]])
     ], LearnScreenPage);

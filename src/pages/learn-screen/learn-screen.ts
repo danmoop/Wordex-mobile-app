@@ -33,8 +33,11 @@ export class LearnScreenPage {
     console.log('ionViewDidLoad LearnScreenPage');
   }
 
-  start()
-  { 
+  /**
+   * @function start obtained all the arrays of words
+   * @return a random word that will be displayed
+   */
+  start() { 
       this.started = true;
 
       this.toLearnWords = JSON.parse(localStorage.getItem("toLearnWords"));
@@ -45,25 +48,33 @@ export class LearnScreenPage {
       this.randomWord = this.toLearnWords[Math.round(Math.random() * this.toLearnWords.length)];
   }
 
+
+  /**
+   * @function listen allows to listen the pronunciation of a word displayed
+   */
   listen() {
     this.tts.speak(this.randomWord.enWord)
       .then(() => console.log('Success'))
       .catch((reason: any) => console.log(reason));
   }
 
-  getNewWord()
-  {
-
-    if(JSON.parse(localStorage.getItem("toLearnWords")).length == 0)
-    {
+  /**
+   * @return new random word that will be displayed
+   */
+  getNewWord() {
+    if(JSON.parse(localStorage.getItem("toLearnWords")).length == 0) {
       this.finished = true;
       this.started = null;
     }
+
     this.randomWord = this.toLearnWords[Math.floor(Math.random() * this.toLearnWords.length)];
   }
 
-  toBeRepeated()
-  {
+  /**
+   * a displayed word will be moved to 'toRepeatWords' array
+   * @return new random word that will be displayed
+   */
+  toBeRepeated() {
     var index = this.toLearnWords.indexOf(this.randomWord);
     this.toLearnWords.splice(index, 1);
     this.toRepeatWords.unshift(this.randomWord);
@@ -74,8 +85,11 @@ export class LearnScreenPage {
     this.getNewWord();
   }
 
-  wordIsLearned()
-  {
+  /**
+   * a displayed word will be moved to 'learnedWords' array
+   * @return new random word that will be displayed
+   */
+  wordIsLearned() {
     var index = this.toLearnWords.indexOf(this.randomWord);
     this.toLearnWords.splice(index, 1);
     this.learnedWords.unshift(this.randomWord);
@@ -86,8 +100,11 @@ export class LearnScreenPage {
     this.getNewWord();
   }
 
-  wordIsKnown()
-  {
+  /**
+   * a displayed word will be moved to 'knownWords' array
+   * @return new random word that will be displayed
+   */
+  wordIsKnown() {
     var index = this.toLearnWords.indexOf(this.randomWord);
     this.toLearnWords.splice(index, 1);
     this.knownWords.unshift(this.randomWord);
@@ -97,5 +114,4 @@ export class LearnScreenPage {
 
     this.getNewWord();
   }
-
 }
