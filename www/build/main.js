@@ -163,11 +163,11 @@ var map = {
 		3
 	],
 	"../pages/preview-exact-word/preview-exact-word.module": [
-		275,
+		274,
 		2
 	],
 	"../pages/word-test/word-test.module": [
-		274,
+		275,
 		1
 	],
 	"../pages/words-viewer/words-viewer.module": [
@@ -265,8 +265,8 @@ var AppModule = /** @class */ (function () {
                     links: [
                         { loadChildren: '../pages/help-screen/help-screen.module#HelpScreenPageModule', name: 'HelpScreenPage', segment: 'help-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/learn-screen/learn-screen.module#LearnScreenPageModule', name: 'LearnScreenPage', segment: 'learn-screen', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/word-test/word-test.module#WordTestPageModule', name: 'WordTestPage', segment: 'word-test', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/preview-exact-word/preview-exact-word.module#PreviewExactWordPageModule', name: 'PreviewExactWordPage', segment: 'preview-exact-word', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/word-test/word-test.module#WordTestPageModule', name: 'WordTestPage', segment: 'word-test', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/words-viewer/words-viewer.module#WordsViewerPageModule', name: 'WordsViewerPage', segment: 'words-viewer', priority: 'low', defaultHistory: [] }
                     ]
                 })

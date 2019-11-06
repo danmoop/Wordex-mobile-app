@@ -37,11 +37,11 @@ export class HomePage {
 	 * @function ionViewDidEnter is executed when application is opened
 	 */
     ionViewDidEnter() {
-        this.refreshWords();
-
         if (+localStorage.getItem("words_imported") == 0) {
             this.importWords();
             localStorage.setItem("words_imported", "1");
+
+            this.refreshWords();
         }
 
         var counter = +localStorage.getItem("rateCounter");
@@ -57,7 +57,9 @@ export class HomePage {
             this.knownAmount = JSON.parse(localStorage.getItem("knownWords")).length;
             this.toRepeatAmount = JSON.parse(localStorage.getItem("toRepeatWords")).length;
             this.learnedAmount = JSON.parse(localStorage.getItem("learnedWords")).length;
-        } catch (err) {}
+        } catch (err) {
+            console.warn(err);
+        }
     }
 
 	/**
