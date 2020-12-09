@@ -146,7 +146,6 @@ export class WordTestPage {
 
       this.updateWords();
       this.getNewWord();
-
       
       var rateCounter = +localStorage.getItem("rateCounter");
       rateCounter++;

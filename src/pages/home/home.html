@@ -7,7 +7,7 @@
     </ion-buttons>
 
     <ion-buttons end>
-      <button ion-button style="font-size: 2.7rem;" (click)="refreshPage();">
+      <button ion-button style="font-size: 2.7rem;" (click)="refreshWords();">
         <ion-icon name="ios-refresh-outline" style="color: #2cd8d7;"></ion-icon>
       </button>
     </ion-buttons>
@@ -62,14 +62,8 @@
   <hr>
 
   <ion-grid text-center>
-    <ion-row>
-      <ion-col>
-        <button ion-button round outline block style="border-width: 2px;" (click)="navigateTo('LearnScreenPage');" class="monts">Выучить новые</button>
-      </ion-col>
-      <ion-col>
-        <button ion-button color="light" block round outline style="border-width: 2px;" (click)="viewKnownWords('toRepeatWords');" class="monts">Повторить старые</button>
-      </ion-col>
-    </ion-row>
+      
+        <button ion-button round outline block style="border-width: 2px;" (click)="navigateTo('LearnScreenPage');" class="monts">Изучить новые слова</button>
     <button ion-button color="secondary" round outline style="border-width: 2px;" (click)="navigateTo('WordTestPage');" class="monts">Пройти тест</button>
   </ion-grid>
 

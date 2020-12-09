@@ -70,7 +70,9 @@ export class WordsViewerPage {
                   this.navCtrl.push('PreviewExactWordPage', _sender);
                 }
               }
-            } else this.wordNotFound(word);
+            } else {
+		this.wordNotFound(word);
+	    }
           }
         },
         {

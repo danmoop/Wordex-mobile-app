@@ -40,12 +40,12 @@ export class HomePage {
         if (+localStorage.getItem("words_imported") == 0) {
             this.importWords();
             localStorage.setItem("words_imported", "1");
-
-            this.refreshWords();
         }
 
         var counter = +localStorage.getItem("rateCounter");
         var rateBool = localStorage.getItem("rateBool");
+        
+        this.refreshWords();
     }
 
 	/**

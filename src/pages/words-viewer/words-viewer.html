@@ -2,7 +2,8 @@
 
   <ion-navbar>
     <ion-title>
-      <span class="w monts up" (press)="repeatOnceMore();">Wordex</span>
+      <span class="w mono" (press)="repeatOnceMore();" *ngIf="this.wordsType != 'toRepeatWords'">Wordex</span>
+      <span class="w mono" *ngIf="this.wordsType == 'toRepeatWords'">Wordex</span>
     </ion-title>
     <ion-buttons start>
       <button ion-button style="font-size: 2.7rem;" (click)="findWord();">
@@ -32,7 +33,7 @@
     <hr>
   </div>
 
-  <button ion-button color="light" class="monts" full outline style="border-width: 2px; border-radius:25px; white-space: normal;" *ngFor="let w of words" (click)="previewWord(w);" (press)="wordActions(w);">
+  <button ion-button color="light" class="monts" full *ngFor="let w of words" (click)="previewWord(w);" (press)="wordActions(w);" style="font-weight: bold; white-space: pre-wrap;">
     {{ w.enWord }} -- {{ w.ruWord }}
   </button>
 </ion-content>

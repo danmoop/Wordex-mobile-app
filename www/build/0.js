@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 276:
+/***/ 275:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WordsViewerPageModule", function() { return WordsViewerPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__words_viewer__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__words_viewer__ = __webpack_require__(280);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var WordsViewerPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 281:
+/***/ 280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -274,7 +274,7 @@ var WordsViewerPage = /** @class */ (function () {
     };
     WordsViewerPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-words-viewer',template:/*ion-inline-start:"D:\Apps\Wordex\src\pages\words-viewer\words-viewer.html"*/'  <ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>\n\n      <span class="w monts up" (press)="repeatOnceMore();">Wordex</span>\n\n    </ion-title>\n\n    <ion-buttons start>\n\n      <button ion-button style="font-size: 2.7rem;" (click)="findWord();">\n\n        <ion-icon name="search" style="color: #2cd8d7;"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons end>\n\n      <button ion-button style="font-size: 2.7rem;" (click)="presentPrompt();">\n\n        <ion-icon name="add-circle-outline" style="color: #2cd8d7;"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding id="mainScreen" text-center>\n\n\n\n  <h3 class="w monts">{{ wordTypeHeader }}</h3>\n\n\n\n  <hr style="background: #34495e;">\n\n\n\n  <div *ngIf="words != null && words.length == 0">\n\n    <hr style="background: #777;">\n\n    <h2 class="w monts">Упс, кажется здесь пока ничего нет!</h2>\n\n    <br>\n\n    <img src="./assets/imgs/empty-box-open.png" alt="">\n\n    <hr>\n\n  </div>\n\n\n\n  <button ion-button color="light" class="monts" full outline style="border-width: 2px; border-radius:25px; white-space: normal;" *ngFor="let w of words" (click)="previewWord(w);" (press)="wordActions(w);">\n\n    {{ w.enWord }} -- {{ w.ruWord }}\n\n  </button>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Apps\Wordex\src\pages\words-viewer\words-viewer.html"*/,
+            selector: 'page-words-viewer',template:/*ion-inline-start:"D:\apps\wordex\src\pages\words-viewer\words-viewer.html"*/'  <ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>\n\n      <span class="w mono" (press)="repeatOnceMore();" *ngIf="this.wordsType != \'toRepeatWords\'">Wordex</span>\n\n      <span class="w mono" *ngIf="this.wordsType == \'toRepeatWords\'">Wordex</span>\n\n    </ion-title>\n\n    <ion-buttons start>\n\n      <button ion-button style="font-size: 2.7rem;" (click)="findWord();">\n\n        <ion-icon name="search" style="color: #2cd8d7;"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons end>\n\n      <button ion-button style="font-size: 2.7rem;" (click)="presentPrompt();">\n\n        <ion-icon name="add-circle-outline" style="color: #2cd8d7;"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding id="mainScreen" text-center>\n\n\n\n  <h3 class="w monts">{{ wordTypeHeader }}</h3>\n\n\n\n  <hr style="background: #34495e;">\n\n\n\n  <div *ngIf="words != null && words.length == 0">\n\n    <hr style="background: #777;">\n\n    <h2 class="w monts">Упс, кажется здесь пока ничего нет!</h2>\n\n    <br>\n\n    <img src="./assets/imgs/empty-box-open.png" alt="">\n\n    <hr>\n\n  </div>\n\n\n\n  <button ion-button color="light" class="monts" full *ngFor="let w of words" (click)="previewWord(w);" (press)="wordActions(w);" style="font-weight: bold; white-space: pre-wrap;">\n\n    {{ w.enWord }} -- {{ w.ruWord }}\n\n  </button>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\apps\wordex\src\pages\words-viewer\words-viewer.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */]])
     ], WordsViewerPage);

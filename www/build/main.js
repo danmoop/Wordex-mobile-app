@@ -52,13 +52,13 @@ var HomePage = /** @class */ (function () {
      * @function ionViewDidEnter is executed when application is opened
      */
     HomePage.prototype.ionViewDidEnter = function () {
-        this.refreshWords();
         if (+localStorage.getItem("words_imported") == 0) {
             this.importWords();
             localStorage.setItem("words_imported", "1");
         }
         var counter = +localStorage.getItem("rateCounter");
         var rateBool = localStorage.getItem("rateBool");
+        this.refreshWords();
     };
     /**
      * @function refreshWords refreshes counters to corresponding words
@@ -70,7 +70,9 @@ var HomePage = /** @class */ (function () {
             this.toRepeatAmount = JSON.parse(localStorage.getItem("toRepeatWords")).length;
             this.learnedAmount = JSON.parse(localStorage.getItem("learnedWords")).length;
         }
-        catch (err) { }
+        catch (err) {
+            console.warn(err);
+        }
     };
     /**
      * @param key is a key that will be obtained from a localstorage
@@ -121,7 +123,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = HomePage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"D:\Apps\Wordex\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-buttons start>\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu" style="color: #2cd8d7;"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n\n\n    <ion-buttons end>\n\n      <button ion-button style="font-size: 2.7rem;" (click)="refreshPage();">\n\n        <ion-icon name="ios-refresh-outline" style="color: #2cd8d7;"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-title>\n\n      <span class="mono w">WORDEX</span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding id="mainScreen">\n\n\n\n  <ion-card class="c" text-center (click)="viewKnownWords(\'knownWords\');">\n\n    <ion-card-header>\n\n      <span class="w b fz-25 monts">Известные слова:</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-40 eina">{{ knownAmount }}</span>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card class="c" text-center (click)="viewKnownWords(\'learnedWords\');">\n\n    <ion-card-header>\n\n      <span class="w b fz-25 monts">Выученные слова:</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-40 eina">{{ learnedAmount }}</span>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card class="c" text-center (click)="viewKnownWords(\'toRepeatWords\');">\n\n    <ion-card-header>\n\n      <span class="w b fz-25 monts">Для повторения:</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-40 eina">{{ toRepeatAmount }}</span>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card class="c" text-center>\n\n    <ion-card-header>\n\n      <span class="w b fz-25 monts">Для изучения:</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-40 eina">{{ toLearnAmount }}</span>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <hr>\n\n\n\n  <ion-grid text-center>\n\n    <ion-row>\n\n      <ion-col>\n\n        <button ion-button round outline block style="border-width: 2px;" (click)="navigateTo(\'LearnScreenPage\');" class="monts">Выучить новые</button>\n\n      </ion-col>\n\n      <ion-col>\n\n        <button ion-button color="light" block round outline style="border-width: 2px;" (click)="viewKnownWords(\'toRepeatWords\');" class="monts">Повторить старые</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <button ion-button color="secondary" round outline style="border-width: 2px;" (click)="navigateTo(\'WordTestPage\');" class="monts">Пройти тест</button>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Apps\Wordex\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"D:\apps\wordex\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-buttons start>\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu" style="color: #2cd8d7;"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n\n\n    <ion-buttons end>\n\n      <button ion-button style="font-size: 2.7rem;" (click)="refreshWords();">\n\n        <ion-icon name="ios-refresh-outline" style="color: #2cd8d7;"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-title>\n\n      <span class="mono w">WORDEX</span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding id="mainScreen">\n\n\n\n  <ion-card class="c" text-center (click)="viewKnownWords(\'knownWords\');">\n\n    <ion-card-header>\n\n      <span class="w b fz-25 monts">Известные слова:</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-40 eina">{{ knownAmount }}</span>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card class="c" text-center (click)="viewKnownWords(\'learnedWords\');">\n\n    <ion-card-header>\n\n      <span class="w b fz-25 monts">Выученные слова:</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-40 eina">{{ learnedAmount }}</span>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card class="c" text-center (click)="viewKnownWords(\'toRepeatWords\');">\n\n    <ion-card-header>\n\n      <span class="w b fz-25 monts">Для повторения:</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-40 eina">{{ toRepeatAmount }}</span>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card class="c" text-center>\n\n    <ion-card-header>\n\n      <span class="w b fz-25 monts">Для изучения:</span>\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <span class="w b fz-40 eina">{{ toLearnAmount }}</span>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <hr>\n\n\n\n  <ion-grid text-center>\n\n      \n\n        <button ion-button round outline block style="border-width: 2px;" (click)="navigateTo(\'LearnScreenPage\');" class="monts">Изучить новые слова</button>\n\n    <button ion-button color="secondary" round outline style="border-width: 2px;" (click)="navigateTo(\'WordTestPage\');" class="monts">Пройти тест</button>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\apps\wordex\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */]])
     ], HomePage);
@@ -167,11 +169,11 @@ var map = {
 		2
 	],
 	"../pages/word-test/word-test.module": [
-		275,
+		276,
 		1
 	],
 	"../pages/words-viewer/words-viewer.module": [
-		276,
+		275,
 		0
 	]
 };
@@ -266,8 +268,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/help-screen/help-screen.module#HelpScreenPageModule', name: 'HelpScreenPage', segment: 'help-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/learn-screen/learn-screen.module#LearnScreenPageModule', name: 'LearnScreenPage', segment: 'learn-screen', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/preview-exact-word/preview-exact-word.module#PreviewExactWordPageModule', name: 'PreviewExactWordPage', segment: 'preview-exact-word', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/word-test/word-test.module#WordTestPageModule', name: 'WordTestPage', segment: 'word-test', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/words-viewer/words-viewer.module#WordsViewerPageModule', name: 'WordsViewerPage', segment: 'words-viewer', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/words-viewer/words-viewer.module#WordsViewerPageModule', name: 'WordsViewerPage', segment: 'words-viewer', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/word-test/word-test.module#WordTestPageModule', name: 'WordTestPage', segment: 'word-test', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],
@@ -296,14 +298,14 @@ var AppModule = /** @class */ (function () {
 
 var data = `a -- неопределенный артикль
 abandon -- отказываться, покидать, прекращать
-abandoned -- заброшенный !NEW!
+abandoned -- заброшенный 
 abate -- уменьшить
 abbey -- Аббатство 
 abbreviation -- сокращение
 ABC -- алфавит, азбука, букварь, начатки, основы
 abide -- ждать, терпеть
 ability -- способность (-y не от слова capable)
-able -- способный (-e)
+able -- способный 
 aboard -- на корабле, на борту, в вагоне
 abode -- местопребывание, жилище (не lodge)
 abominable -- отвратительный, противный
@@ -311,13 +313,13 @@ about -- о
 above -- над, выше, наверху
 abroad -- за границей
 abrupt -- резкий, внезапный, крутой, обрывистый
-abruptly -- внезапно, резко, грубо !NEW!
+abruptly -- внезапно, резко, грубо 
 absence -- отсутствие
 absent -- отсутствующий
 absolute -- совершенный, чистый
 absolutely -- абсолютно, совершенно
 absorb -- поглощать, всасывать, впитывать
-absorbed -- увлечённый чем-либо !NEW!
+absorbed -- увлечённый чем-либо 
 absorption -- Поглощение 
 abstract -- отвлеченный, абстрактный
 absurd -- нелепый
@@ -363,7 +365,7 @@ acknowledged -- Подтвержденный
 acorn -- желудь
 acquaintance -- знакомство, знакомый
 acquire -- приобретать
-acquired -- приобретённый !NEW!
+acquired -- приобретённый 
 acquisition -- приобретение
 acquit -- оправдывать
 across -- через, поперек
@@ -392,7 +394,7 @@ adequate -- достаточный, соответствующий
 adhere -- прилипать, приставать ( to) , приклеиваться, хвататься
 adjoining -- Смежный -ing 
 adjust -- регулировать, приспосабливать
-adjustment -- регулирование *d-
+adjustment -- регулирование *
 administration -- администрация
 administrator -- администратор
 admirable -- замечательный (не wonderful)
@@ -433,7 +435,7 @@ aerial -- воздушный, антенна
 aeroplane -- самолет
 afar -- далеко, вдали
 affair -- дело, занятие
-affairs -- делишки !NEW!
+affairs -- делишки 
 affect -- влиять, трогать, вредить
 affected -- пораженный
 affection -- привязанность, любовь
@@ -442,7 +444,7 @@ affectionately -- Нежно
 affections -- Привязанности 
 affirmative -- утвердительный
 afford -- позволить себе
-afforded -- Предоставляемый *f- 
+afforded -- Предоставляемый  
 affray -- пугать
 afore -- перед
 afraid -- испуганный
@@ -460,7 +462,7 @@ agent -- деятель, исполнитель
 aggregate -- совокупность
 aggregated -- Соединенный 
 aggregation -- Скопление 
-agitated -- Взволнованный *g- (не thrilled) 
+agitated -- Взволнованный * (не thrilled) 
 agitation -- агитация
 agony -- мучение, сильная боль
 agree -- соглашаться
@@ -531,7 +533,7 @@ altogether -- всего, в общем
 always -- всегда
 am -- (я) есть (от be)
 amateur -- любитель
-amazed -- изумлённый, поражённый (не wonder) !NEW!
+amazed -- изумлённый, поражённый (не wonder) 
 amazement -- удивление, изумление
 amazing -- Удивительный -ing 
 amber -- янтарь, янтарный
@@ -541,7 +543,7 @@ ambitious -- честолюбивый
 ambulance -- полевой госпиталь, карета скорой помощи
 amends -- возмещение
 amiable -- любезный, милый
-amid -- между, посреди, среди !NEW!
+amid -- между, посреди, среди 
 ammonia -- аммиак
 ammunition -- боеприпасы
 among -- среди (не midst)
@@ -569,7 +571,7 @@ angeles -- Анхелес
 anger -- гнев, злость
 angle -- угол, точка зрения
 angles -- Углы 
-angrily -- сердито !NEW!
+angrily -- сердито 
 angry -- сердитый
 anguish -- страдание
 animal -- животное
@@ -602,12 +604,12 @@ antiquity -- древность
 antony -- Энтони 
 anvil -- наковальня
 anxiety -- тревога, беспокойство
-anxious -- беспокойный *n-
-anxiously -- тревожно !NEW!
+anxious -- беспокойный 
+anxiously -- тревожно 
 anyhow -- во всяком случае
-anyone -- любой, всякий( утв предлож), кто-нибудь, никто (в отриц предлож) !NEW!
+anyone -- любой, всякий( утв предлож), кто-нибудь, никто (в отриц предлож) 
 anyway -- во что бы то ни стало
-anywhere -- где-нибудь !NEW!
+anywhere -- где-нибудь 
 apart -- в стороне, отдельно (не aside)
 apartment -- квартира
 ape -- обезьяна (человекообразная)
@@ -683,10 +685,10 @@ armies -- Армии
 armour -- броня
 arms -- оружие
 army -- армия
-arose -- возник, появился !NEW!
+arose -- возник, появился 
 around -- вокруг, по
 arouse -- будить, пробуждать
-aroused -- разбуженный !NEW!
+aroused -- разбуженный 
 arrange -- устраивать, договариваться
 arrangement -- договоренность
 arrangements -- Меры (не measurements) 
@@ -714,7 +716,7 @@ ascent -- восхождение, подъем a-
 ascertain -- установить, удостовериться
 ascertained -- Установленный 
 ash -- ясень
-ashamed -- пристыженный !NEW!
+ashamed -- пристыженный 
 ashes -- Пепел 
 ashore -- на берег
 asia -- Азия 
@@ -748,9 +750,9 @@ assumed -- Принятый (не adopted)
 assumption -- предположение
 assurance -- заверение, уверенность
 assure -- уверять, обеспечивать
-assured -- уверенный, застрахованный !NEW!
+assured -- уверенный, застрахованный 
 asterisk -- звездочка
-astonished -- удивленный !NEW!
+astonished -- удивленный 
 astonishing -- Удивительный -ing 
 astonishment -- удивление, изумление
 astronomy -- астрономия
@@ -832,7 +834,7 @@ awful -- ужасный
 awfully -- ужасно, очень (разг.), крайне
 awhile -- некоторое время
 awkward -- неуклюжий
-awoke -- будил *w- !NEW!
+awoke -- будил *w- 
 axis -- ось
 ay -- Да 
 aye -- Утвердительный ответ, положительный ответ (не yes) 
@@ -843,7 +845,7 @@ back -- спина, назад
 backed -- Поддержанный 
 background -- фон, задний план
 backs -- Задние части b- 
-backup -- Резервный *a- 
+backup -- Резервный  
 backward -- назад, обратно, наоборот
 backwards -- Назад 
 bacon -- бекон
@@ -880,7 +882,7 @@ bandage -- бинт, повязка, перевязывать, бинтоват�
 bands -- ансамбли (от band)
 bandy -- перебрасываться, хоккей, клюшка
 bang -- ударять, хлопать (дверью и т.п.)
-banged -- ударенный !NEW!
+banged -- ударенный 
 banisters -- перила (лестницы)
 bank -- банк
 banner -- знамя
@@ -904,7 +906,7 @@ barren -- бесплодный, неплодородный
 barrier -- барьер, преграда
 barrow -- носилки
 bars -- Бруски(бары) 
-barton -- имение, поместье, усадьба (не estate) !NEW!
+barton -- имение, поместье, усадьба (не estate) 
 base -- основа
 baseball -- бейсбол
 based -- Основанный 
@@ -945,7 +947,7 @@ bearing -- Отношение(поведение) -ing
 bears -- Медведи 
 beast -- зверь, животное
 beastly -- противный (разг.) -- от слова ЗВЕРЬ!!!
-beasts -- звери !NEW!
+beasts -- звери 
 beat -- ударить, бить
 beaten -- битый
 beating -- поражение b-
@@ -1004,7 +1006,7 @@ bellamy -- Беллами
 bellow -- мычание, греметь, громыхать (не rattle)
 belly -- живот, аппетит
 belong -- принадлежать
-belonged -- принадлежащий !NEW!
+belonged -- принадлежащий 
 belongings -- вещи, пожитки
 beloved -- любимый
 below -- ниже, внизу
@@ -1035,7 +1037,7 @@ betty -- Бетти
 between -- между
 beverley -- Беверлей 
 bewail -- оплакивать, скорбеть
-beware -- осторожно *e-
+beware -- осторожно *
 bewildered -- пораженный, изумленный b-
 beyond -- далеко, вдали, на расстоянии, вне, сверх
 Bible -- библия
@@ -1050,7 +1052,7 @@ bikes -- Велосипеды
 bill -- счет, законопроект
 billion -- биллион, миллиард (амер.)
 billy -- Билли 
-bin -- бункер !NEW!
+bin -- бункер 
 binary -- Набор из двух предметов 
 bind -- связывать (не link)
 binding -- переплет -ing
@@ -1065,7 +1067,7 @@ bishop -- епископ, слон (шахм.)
 bit -- кусочек, немного
 bite -- кусаться
 biting -- острый, резкий b-ing
-bits -- куски !NEW!
+bits -- куски 
 bitter -- горький, мучительный
 bitterly -- горько, сильно
 blab -- болтун, болтать (не от слова chat)
@@ -1087,9 +1089,9 @@ bleach -- белить (ткань)
 bleeding -- Кровотечение 
 blend -- смешивать, смесь
 bless -- благословлять
-blessed -- благословлённый !NEW!
+blessed -- благословлённый 
 blessing -- благословение -ing
-blew -- дул !NEW!
+blew -- дул 
 blind -- слепой
 blink -- мерцание, отблеск, блеснуть, моргать b-
 blinked -- Мигал 
@@ -1118,7 +1120,7 @@ board -- садиться на пароход, самолет; доска
 boarding -- посадка (самолёта) -ing
 boast -- хвастовство, хвастать
 boat -- лодка, пароход
-boats -- лодки !NEW!
+boats -- лодки 
 bodies -- Органы(тела) 
 bodily -- лично, сам, собственной персоной (не myself)
 body -- тело
@@ -1133,7 +1135,7 @@ bolt -- молния
 bomb -- бомба, бомбить
 bondage -- рабство, зависимость (не slavery)
 bone -- кость
-bones -- кости !NEW!
+bones -- кости 
 bonfire -- костер
 bonnet -- капор, дамская шляпа
 bonus -- премия
@@ -1186,7 +1188,7 @@ brain -- мозг
 brake -- тормоз
 brakes -- тормоза (от brake)
 branch -- ветвь, отрасль
-branches -- ветки !NEW!
+branches -- ветки 
 brand -- головня, клеймо, фабричная марка, сорт, клеймить
 brandy -- коньяк, бренди
 brass -- установить
@@ -1261,7 +1263,7 @@ bucket -- ведро
 buckwheat -- гречиха
 bud -- почка, бутон, давать почки, пускать ростки
 budge -- шевелиться
-buds -- почка, расцветать !NEW!
+buds -- почка, расцветать 
 buffalo -- буйвол
 buffer -- Буфер 
 bug -- клоп, насекомое, жук (амер.)
@@ -1288,15 +1290,15 @@ burden -- груз, бремя
 bureau -- бюро, контора
 burglary -- кража со взломом
 burial -- похороны
-buried -- спрятанный, похороненный !NEW!
+buried -- спрятанный, похороненный 
 burlap -- холст, мешковина (не canvas)
-burly -- крепкий !NEW!
+burly -- крепкий 
 burn -- гореть, жечь, сжигать
 burst -- заливаться, разражаться
 bury -- хоронить, прятать
 bus -- автобус
 bush -- куст
-bushes -- кусты !NEW!
+bushes -- кусты 
 busily -- Деловито 
 business -- дело, бизнес, деловой
 businessmen -- бизнесмены (от businessman)
@@ -1331,7 +1333,7 @@ cafe -- кафе
 cage -- клетка, кабина
 cages -- Клетки 
 cake -- торт
-cakes -- пироги !NEW!
+cakes -- пироги 
 calamity -- стихийное бедствие, большое несчастье
 calculate -- рассчитывать, вычислять
 calculated -- Расчетный 
@@ -1342,7 +1344,7 @@ call -- звонить, называть (call)
 called -- звонил, названный (от call)
 calling -- звонящий (от call)
 calm -- успокаивать
-calmly -- тихо, спокойно !NEW!
+calmly -- тихо, спокойно 
 cambridge -- Кембридж 
 came -- пришел (от come)
 camera -- фотоаппарат
@@ -1400,11 +1402,11 @@ carrot -- морковь
 carry -- нести, носить, возить
 carrying -- перевозка
 cart -- телега, повозка
-carter -- возчик; ломовой извозчик !NEW!
+carter -- возчик; ломовой извозчик 
 carton -- коробка
 cartoon -- мультфильм
 carve -- вырезать, отрезать
-carved -- вырезанный (из дерева, из камня) !NEW!
+carved -- вырезанный (из дерева, из камня) 
 case -- случай, состояние
 cash -- деньги
 casks -- Бочки 
@@ -1418,13 +1420,13 @@ cathedral -- собор
 catherine -- Кэтрин 
 cats -- Коты 
 cattle -- (рогатый) скот
-caught -- ловил !NEW!
+caught -- ловил 
 cauldron -- Котел 
 cause -- дело, причина
 causing -- Порождение -ing 
 caution -- осторожность
 cautious -- осторожный
-cautiously -- осторожно !NEW!
+cautiously -- осторожно 
 cave -- пещера
 cavern -- Пещера 
 cavity -- впадина, полость
@@ -1502,7 +1504,7 @@ cheek -- щека
 cheeky -- развязный
 cheer -- настроение
 cheerful -- жизнерадостный, веселый с-
-cheerfully -- бодро !NEW!
+cheerfully -- бодро 
 cheers -- да здравствует (приветственное восклицание)
 cheese -- сыр
 chemical -- химический
@@ -1724,8 +1726,8 @@ compared -- сравнил (от compare)
 comparison -- сравнение
 compartment -- купе
 compass -- объем, диапазон; компас; циркуль
-compassion -- жалость, сострадание !NEW!
-compatibility -- совместимость !NEW!
+compassion -- жалость, сострадание 
+compatibility -- совместимость 
 compelled -- Вынужденный 
 compete -- состязаться, конкурировать
 competition -- соревнование
@@ -1773,7 +1775,7 @@ concerning -- относительно (не relatively) -ing
 concert -- концерт
 concession -- концессия
 conclude -- завершать, заключать
-concluded -- завершенный, законченный (не completed) !NEW!
+concluded -- завершенный, законченный (не completed) 
 conclusion -- заключение
 conclusions -- Заключения 
 concrete -- бетон, сгущать, конкретный
@@ -1802,7 +1804,7 @@ conflict -- конфликт, противоречить
 conform -- соответствовать, подчиняться
 confront -- стоять против
 confuse -- смущать, приводить в замешательство
-confused -- запутанный, смущённый !NEW!
+confused -- запутанный, смущённый 
 confusion -- смущение
 congratulate -- поздравлять
 congratulated -- поздравил (от congratulate)
@@ -1958,7 +1960,7 @@ course -- курс, блюдо
 court -- корт, двор
 courtyard -- двор
 cousin -- двоюродный брат
-cousins -- кузены !NEW!
+cousins -- кузены 
 cove -- сооружать
 cover -- покрывало, крышка
 covering -- Покрытие 
@@ -1995,7 +1997,7 @@ credit -- кредит
 creep -- ползать, выползать
 creeper -- вьющееся растение
 creeping -- Ползающий 
-crept -- ползал !NEW!
+crept -- ползал 
 crescent -- полумесяц
 crest -- гребешок, хохолок, гребень (волны, горы)
 crevice -- трещина, расщелина
@@ -2033,7 +2035,7 @@ crumble -- крошить(ся)
 crushed -- Сокрушенный 
 crust -- корка, кора
 cry -- кричать, восклицать
-crying -- кричащий (-ing) !NEW!
+crying -- кричащий (-ing) 
 crystal -- хрусталь
 cub -- детеныш (зверя)
 cubic -- кубический
@@ -2054,7 +2056,7 @@ curdle -- свертываться (о молоке)
 cure -- лекарство, лечить c-
 curiosity -- любопытство, редкая вещь
 curious -- любознательный
-curiously -- странно (не strangely) !NEW!
+curiously -- странно (не strangely) 
 curl -- виться, завивать(ся); локон, завиток
 curled -- Вился 
 curls -- Завитки 
@@ -2065,7 +2067,7 @@ curse -- проклятие
 cursor -- Курсор 
 curt -- краткий, сжатый, грубый
 curtain -- занавеска, занавес
-curtains -- занавески !NEW!
+curtains -- занавески 
 curvature -- Искривление 
 curve -- изгиб, гнуть c-
 curved -- Изогнутый 
@@ -2101,10 +2103,10 @@ dangers -- Опасности
 dangle -- качаться, подвешивать
 darcy -- Дарси 
 dare -- сметь, отважиться
-dared -- осмелившийся !NEW!
+dared -- осмелившийся 
 daring -- смелость, отвага; смелый, отважный -ing
 dark -- темный, печальный
-darkened -- Затемненный *a- 
+darkened -- Затемненный  
 darker -- Более темный 
 darkness -- темнота, мрак
 darling -- любимый, дорогой
@@ -2112,7 +2114,7 @@ darn -- штопать
 darted -- Брошенный (не dashed) 
 darwin -- Дарвин 
 dash -- оттолкнуть, отбросить
-dashed -- брошенный !NEW!
+dashed -- брошенный 
 data -- данные, факты
 database -- База данных 
 databases -- Базы данных 
@@ -2144,7 +2146,7 @@ debt -- долг
 debts -- долги (от debt)
 decay -- гниение, разложение
 deceive -- обманывать
-deceived -- обманутый !NEW!
+deceived -- обманутый 
 December -- декабрь
 decency -- приличие, благопристойность
 decent -- приличный, скромный
@@ -2152,7 +2154,7 @@ deception -- обман, хитрость -ion
 deceptive -- обманчивый
 decide -- решать
 decided -- решил (от decide)
-decidedly -- определённо, точно, бесспорно (не doubtless) !NEW!
+decidedly -- определённо, точно, бесспорно (не doubtless) 
 decimal -- десятичный, десятичная дробь
 decipher -- расшифровывать
 decision -- решение
@@ -2164,7 +2166,7 @@ declared -- Объявленный
 decline -- опускаться, уменьшаться, убывать
 declined -- Отклоненный **c- 
 decorate -- украшать
-decoy -- западня, приманка; заманивать в ловушку d-
+decoy -- западня, приманка; заманивать в ловушку 
 decrease -- уменьшать, уменьшить
 decree -- декрет, указ; издавать декрет; постановлять
 decrepit -- ветхий, дряхлый
@@ -2177,13 +2179,13 @@ deeply -- глубоко
 deer -- олень, лань
 default -- Неплатеж, невыполнение обязательств 
 defeat -- поражение
-defeated -- побеждённый !NEW!
+defeated -- побеждённый 
 defect -- недостаток, недочет
 defective -- неисправный, недостаточный, неполноценный, дефективный
 defence -- оборона, защита
 defend -- защищать, оборонять
 defender -- защитник, чемпион (не champion)
-defense -- оборона !NEW!
+defense -- оборона 
 defensive -- оборонительный, оборона
 defiance -- неповиновение, пренебрежение
 defiant -- вызывающий, дерзкий
@@ -2202,10 +2204,10 @@ delay -- отсрочка
 delayed -- отложен (от delay)
 delete -- Удалить 
 deliberate -- умышленный, обдуманный
-deliberately -- сознательно, обдуманно !NEW!
+deliberately -- сознательно, обдуманно 
 delicacy -- деликатность, тонкость, нежность (красок); хрупкость, болезненность
-delicate -- изящный d-
-delicious -- восхитительный, прелестный, вкусный (d-)
+delicate -- изящный 
+delicious -- восхитительный, прелестный, вкусный 
 delight -- восхищение, восхищаться
 delighted -- восхищался (от delight)
 delightful -- восхитительный (не marvellous)
@@ -2262,7 +2264,7 @@ deserted -- брошенный, пустынный
 deserter -- дезертир
 deserts -- заслуги
 deserve -- заслуживать
-deserved -- заслуженный !NEW!
+deserved -- заслуженный 
 deserves -- Заслуживает 
 design -- проектировать, спроектировать
 designed -- предназначенный, намеренный
@@ -2272,10 +2274,10 @@ desirable -- желательный
 desire -- желание
 desired -- Желательный 
 desk -- письменный стол
-desolate -- покинутый, заброшенный (-e)
+desolate -- покинутый, заброшенный 
 despair -- отчаяние
 desperate -- отчаянный, безнадежный
-desperately -- отчаянно !NEW!
+desperately -- отчаянно 
 despise -- презирать -e
 despite -- несмотря на
 dessert -- десерт
@@ -2286,12 +2288,12 @@ destroyed -- Разрушенный
 destroyer -- эскадренный миноносец
 destruction -- разрушение
 detach -- отделять, посылать (воен.)
-detached -- отдельный d-
+detached -- отдельный 
 detachment -- отряд
 detail -- деталь
 detailed -- детальный, подробный
 detain -- задерживать, удерживать
-detect -- открывать, обнаруживать d-
+detect -- открывать, обнаруживать 
 detected -- Обнаруженный 
 detection -- открытие, обнаружение
 detective -- детектив(ный)
@@ -2301,10 +2303,10 @@ determination -- решимость, определение
 determine -- определять, устанавливать, разрешать
 determined -- решительный
 detest -- питать отвращение, ненавидеть
-detrimental -- приносящий ущерб (не destructive)
+detrimental -- приносящий ущерб
 develop -- развивать
-developed -- развил (от develop)
-developer -- развивающийся (о человеке) !NEW!
+developed -- развил
+developer -- развивающийся (о человеке) 
 development -- развитие
 device -- прибор, схема, проект, прием, устройство
 devil -- дьявол, сатана
@@ -2324,10 +2326,10 @@ diana -- Диана
 diary -- дневник
 dick -- Дик 
 dictionary -- словарь
-dictum -- изречение, поговорка (не byword)
-did -- делал, действовал (от do)
+dictum -- изречение, поговорка
+did -- делал, действовал
 die -- штамповать, чеканить
-died -- умер, умерший (от die)
+died -- умер, умерший
 diet -- диета
 differ -- различать
 difference -- разница, различие
@@ -2346,7 +2348,7 @@ dignity -- достоинство
 diligence -- прилежание
 dim -- тусклый, неясный, слабый (о зрении), туманный, смутный
 dime -- дайм (10 центов)
-dimly -- смутно (не vague) !NEW!
+dimly -- смутно (не vague) 
 din -- шум, долбить
 dine -- обедать
 dining -- обеденный
@@ -2358,7 +2360,7 @@ direct -- прямой, руководить
 directed -- Направленный 
 direction -- направление
 directions -- Руководства(направления) 
-directly -- прямо, немедленно (d-)
+directly -- прямо, немедленно
 director -- режиссер
 directory -- справочник
 dirt -- грязь
@@ -2368,8 +2370,8 @@ disabled -- искалеченный, выведенный из строя
 disadvantage -- неудобство
 disagreeable -- неприятный
 disappear -- исчезать, исчезнуть
-disappearance -- исчезновение !NEW!
-disappeared -- изчезнувший !NEW!
+disappearance -- исчезновение 
+disappeared -- изчезнувший 
 disappearing -- Исчезновение -ing 
 disappoint -- разочаровывать
 disappointed -- разочарованный (от disappoint)
@@ -2390,7 +2392,7 @@ discontent -- недовольство (не unpleasure)
 discontented -- недовольный (не disagreeable)
 discourage -- обескураживать
 discover -- открывать, обнаруживать
-discovered -- обнаруженный !NEW!
+discovered -- обнаруженный 
 discovery -- открытие
 discreet -- осторожный, сдержанный
 discretion -- свобода действий; свободный выбор
@@ -2399,11 +2401,11 @@ discussed -- обсуждал (от discuss)
 discussing -- обсуждающий, обсуждение (от discuss)
 discussion -- беседа
 disdain -- презирать, пренебрегать; презрение, пренебрежение (не neglect)
-disease -- болезнь *i-
+disease -- болезнь 
 disgrace -- позор, немилость
 disgraceful -- позорный
 disguise -- переодеваться, маскироваться, скрывать; маскировка
-disguised -- замаскированный !NEW!
+disguised -- замаскированный 
 disguises -- Маскировки 
 disgust -- отвращение, вызывать отвращение
 dish -- блюдо
@@ -2412,9 +2414,9 @@ dishonest -- нечестный
 disk -- Диск 
 dislike -- нелюбовь, неприязнь; не любить
 dismal -- мрачный, унылый (не gloomy, dreary)
-dismay -- ужас d-
+dismay -- ужас 
 dismiss -- увольнять
-dismissed -- уволенный !NEW!
+dismissed -- уволенный 
 dismount -- спешиваться
 disorder -- беспорядок
 disperse -- рассеиваться
@@ -2424,7 +2426,7 @@ displeased -- недовольный
 displeasure -- неудовольствие, недовольство, досада
 disposal -- вручение, право распоряжаться
 dispose -- располагать
-disposed -- склонный, расположенный, имеющийся под рукой (не inclined) !NEW!
+disposed -- склонный, расположенный, имеющийся под рукой (не inclined) 
 disposition -- характер
 dispute -- диспут, полемика, обсуждать
 disregard -- пренебрегать, пренебрежение
@@ -2439,15 +2441,15 @@ distinguish -- отличать, различать, разделять
 distinguished -- выдающийся, почетный
 distract -- отвлекать
 distracted -- Отвлеченный 
-distress -- горе, нужда; огорчать, расстраивать d-
+distress -- горе, нужда; огорчать, расстраивать 
 distressed -- Обеспокоенный 
 distribute -- распределять, распространять
 distribution -- распределение
 district -- район
 distrust -- недоверие, не доверять
-disturb -- нарушать, беспокоить d-
+disturb -- нарушать, беспокоить 
 disturbance -- нарушение
-disturbed -- взбудораженный *i- !NEW!
+disturbed -- взбудораженный  
 ditch -- канава
 ditty -- песенка
 dive -- нырять
@@ -2485,7 +2487,7 @@ done -- сделанный (от do)
 donkey -- осел
 doom -- обрекать
 door -- дверь
-doorway -- дверной проем !NEW!
+doorway -- дверной проем 
 dormitory -- спальня
 dorothy -- Дороти 
 dos -- ДОС 
@@ -2500,7 +2502,7 @@ doubted -- Подвергнутый сомнению
 doubtful -- сомневающийся (полон сомнений)
 doubtless -- несомненно
 doubts -- Сомнения 
-dough -- тесто d-
+dough -- тесто 
 dove -- голубь
 down -- внизу, вниз
 downstairs -- вниз, внизу, на нижнем этаже
@@ -2510,9 +2512,9 @@ doze -- дремать
 dozen -- дюжина
 dr -- Доктор 
 draft -- чертеж, проект
-drag -- тащить d-
+drag -- тащить 
 dragged -- Тянул 
-dragon -- дракон !NEW!
+dragon -- дракон 
 drain -- вытекание
 dramatic -- драматический
 drank -- (вы)пил (от drink)
@@ -2526,7 +2528,7 @@ dread -- страшиться, страх
 dreadful -- ужасный (не terrible, horrible)
 dreadfully -- Ужасно 
 dream -- мечтать, видеть сны
-dreams -- мечты !NEW!
+dreams -- мечты 
 dreamt -- мечтал (от dream)
 dreary -- мрачный, унылый, скучный (не gloomy)
 dress -- платье, одеваться
@@ -2542,19 +2544,19 @@ drinks -- напитки (от drink)
 drip -- капать
 drive -- водить машину, ехать на машине
 driver -- водитель, шофер
-driveway -- проезд !NEW!
+driveway -- проезд 
 driving -- езда, вождение, движущий
 droop -- поникать
 drooping -- Свисающий -ing 
 drop -- капля, падать, ронять
-dropped -- потерянный, пролитый (не spoiled) !NEW!
+dropped -- потерянный, пролитый (не spoiled) 
 dropping -- сбрасывающий
 drops -- Снижения(капли) 
 drove -- водил машину, ехал на машине (от drive)
 drown -- тонуть, топить(ся), заглушать
 drowsy -- сонный, дремлющий (не asleep, sleepy)
 drug -- лекарство, наркотик
-drugstore -- аптека d-
+drugstore -- аптека 
 drum -- барабан
 drunk -- выпитый, пьяный (от drink)
 dry -- сухой
@@ -2566,7 +2568,7 @@ ducks -- Утки
 dudley -- Дадли 
 due -- должный, обязанный
 dues -- сборы, взносы
-dug -- сиська, вымя !NEW!
+dug -- сиська, вымя 
 duke -- герцог
 dull -- скучный
 duly -- должным образом
@@ -2597,17 +2599,17 @@ eagerly -- охотно (не willing)
 eagerness -- пыл, рвение, желание
 eagle -- орел
 ear -- ухо
-earl -- граф !NEW!
+earl -- граф 
 earlier -- Ранее 
 earliest -- Самый ранний 
 early -- рано
 earn -- зарабатывать
-earnest -- серьезный e-
+earnest -- серьезный 
 earnestly -- Искренне (не sincerely) 
 earnestness -- Серьезность (не seriousness) 
 earth -- земля
 earthquake -- землетрясение
-ease -- покой, непринужденность e-
+ease -- покой, непринужденность 
 easel -- мольберт
 easier -- Более легкий 
 easily -- легко
@@ -2630,13 +2632,13 @@ edition -- издание
 editor -- редактор
 editorial -- редакционный, передовая статья (амер.)
 edmund -- Эдмунд 
-educated -- образованный ed-
+educated -- образованный
 education -- образование
 educational -- образовательный, воспитательный
 edward -- Эдвард 
-eerie -- Жуткий *e- 
+eerie -- Жуткий * 
 effect -- действие, влияние
-effected -- Произведенный (не produced) *f- 
+effected -- Произведенный (не produced)  
 effective -- действующий, успешный
 effects -- Эффекты 
 effectually -- Целесообразно 
@@ -2661,7 +2663,7 @@ elbows -- Локти
 elder -- старший
 elderly -- пожилой
 eldest -- (самый) старший
-elect -- выбирать **e**
+elect -- выбирать 
 election -- избрание, выборы
 electric -- электрический
 electricity -- электричество
@@ -2697,7 +2699,7 @@ embroidery -- вышивка
 emerald -- изумруд
 emerge -- появляться, выясняться, возникать (не appear)
 emerged -- Появился 
-emergency -- крайняя необходимость e-
+emergency -- крайняя необходимость 
 eminent -- выдающийся
 emma -- Эмма 
 emotion -- возбуждение
@@ -2739,7 +2741,7 @@ energy -- энергия, сила
 enforce -- принуждать, навязывать, проводить в жизнь
 engage -- нанимать, занимать, вовлекать (не employ)
 engaged -- занятый, помолвленный (от engage)
-engagement -- занятие *n-
+engagement -- занятие 
 engine -- двигатель, мотор, машина
 enginedriver -- машинист
 engineer -- инженер
@@ -2751,19 +2753,19 @@ enhancements -- Повышения
 enjoy -- любить, получать удовольствие
 enjoyed -- получил удовольствие (от enjoy)
 enjoyment -- удовольствие, наслаждение, обладание
-enlarge -- увеличивать, расширять, распространяться **l****
+enlarge -- увеличивать, расширять, распространяться 
 enlighten -- просвещать
 enormous -- громадный, ужасный
 enormously -- чрезвычайно
 enough -- достаточный
-enquired -- Спрашивал e- 
+enquired -- Спрашивал  
 enslave -- порабощать
 ensued -- Последовал 
 ensure -- обеспечивать, гарантировать
 entangled -- запутанный
 enter -- входить, поступать (enter)
 entered -- поступил (от enter)
-entering -- вступление e-
+entering -- вступление 
 enterprise -- предприятие, предприимчивость
 enterprising -- предприимчивый
 entertain -- развлекать, развлечь
@@ -2775,7 +2777,7 @@ entire -- полный, совершенный
 entirely -- совершенно, полностью, исключительно
 entitled -- Имеющий право 
 entrance -- вход
-entreaty -- мольба (prayment -- нет такого слова)
+entreaty -- мольба
 entry -- вход
 enumerate -- перечислять
 envelope -- конверт
@@ -2789,7 +2791,7 @@ equality -- равенство, равноправие
 equally -- поровну, одинаково, в равной степени
 equator -- экватор
 equipment -- снаряжение, оборудование
-ER -- отделение (служба) экстренной медицинской помощи (Emergency Room) !NEW!
+ER -- отделение (служба) экстренной медицинской помощи (Emergency Room) 
 era -- эра
 erase -- стирать (резинкой)
 ere -- До, перед, прежде чем; скорее чем 
@@ -2807,7 +2809,7 @@ escort -- охрана (не guards)
 especially -- особенно
 essay -- очерк
 essence -- сущность
-essential -- обязательный, существенный, важный e-
+essential -- обязательный, существенный, важный 
 establish -- учреждать, создавать, утверждать
 established -- установленный
 establishment -- установление, учреждение, положение
@@ -2815,7 +2817,6 @@ estate -- поместье, имущество, сословие
 esteem -- уважать, почитать, уважение (не regard)
 estimate -- оценка, проект, оценивать
 estimated -- предполагаемый
-et -- И 
 etc -- И т.д 
 eternal -- вечный (не forever)
 ethel -- Етел 
@@ -2826,19 +2827,19 @@ evaluation -- оценка (не estimation)
 evaporate -- испаряться, выпаривать
 even -- даже
 evening -- вечер
-evenings -- вечерние (спектакли) e-
+evenings -- вечерние (спектакли) 
 event -- событие
 eventful -- полный событий, знаменательный
 events -- События 
 eventually -- в конечном счете, в конце концов
-ever -- когда-либо !NEW!
+ever -- когда-либо 
 every -- каждый
 everybody -- каждый, всякий, все
 everyday -- повседневный
 everyone -- все, каждый, всякий
 everything -- все
 everywhere -- всюду, везде
-evidence -- доказательство e-
+evidence -- доказательство 
 evident -- очевидный, ясный
 evidently -- очевидно
 evil -- зло, злой
@@ -2872,10 +2873,10 @@ exclaim -- восклицать
 exclamation -- восклицание
 exclude -- исключать
 exclusive -- исключительный, недоступный
-exclusively -- исключительно ***l-
+exclusively -- исключительно 
 excursion -- экскурсия
 excuse -- извинять
-execute -- выполнять e-
+execute -- выполнять 
 executed -- Выполненный 
 execution -- выполнение
 exercise -- упражнение
@@ -2912,7 +2913,7 @@ expert -- эксперт
 explain -- объяснять
 explained -- объяснил (от explain)
 explanation -- объяснение
-explicit -- ясный  e-
+explicit -- ясный  
 explode -- взрывать, подрывать
 exploit -- эксплуатировать
 exploration -- исследование
@@ -2946,7 +2947,7 @@ extremely -- крайне
 extremity -- конец, край, крайность, конечности
 eye -- глаз
 eyebrow -- бровь
-eyebrows -- брови !NEW!
+eyebrows -- брови 
 fable -- басня, сюжет
 face -- лицо
 faces -- выходит, стоит лицом (от face)
@@ -2962,7 +2963,7 @@ failing -- Неудача -ing
 failure -- неудача
 faint -- слабый
 faintest -- малейший (от faint)
-faintly -- слабо !NEW!
+faintly -- слабо 
 fair -- любезно, хорошо, справедливый
 fairfax -- Фаирфакс 
 fairly -- довольно (не rather)
@@ -2971,16 +2972,16 @@ faith -- вера
 faithful -- верный
 faithfully -- Искренне 
 faithless -- ненадежный
-fake -- подделка !NEW!
+fake -- подделка 
 falcon -- сокол
 fall -- падать
-fallen -- упавший !NEW!
+fallen -- упавший 
 falling -- падение
 false -- ложный
 fame -- слава, известность
-familiar -- близкий (f-)
+familiar -- близкий 
 family -- семья
-famine -- голод *a- (не hanger)
+famine -- голод  (не hanger)
 famous -- известный
 fan -- болельщик, поклонник
 fancied -- Представлял себе 
@@ -3001,7 +3002,7 @@ fashion -- мода
 fashionable -- модный
 fashioned -- Вылепленный 
 fast -- спешащий, сильно, быстро (fast)
-fasten -- прикреплять f-
+fasten -- прикреплять 
 fastened -- Закрепленный (не attached) 
 faster -- быстрее
 fat -- жирный
@@ -3009,22 +3010,22 @@ fatal -- фатальный
 fate -- судьба
 father -- папа
 fatigue -- усталость, утомлять(ся)
-fatty -- жирный !NEW!
+fatty -- жирный 
 faucet -- водопроводный кран, вентиль
 fault -- вина, недостаток, ошибка
-faults -- Ошибки f- 
+faults -- Ошибки  
 favor -- Польза(покровительство) 
-favorite -- любимый !NEW!
+favorite -- любимый 
 favour -- одолжение, услуга, польза
 favourable -- благоприятный
 favourite -- любимый
 fear -- страх, опасение, бояться, опасаться
 fearful -- страшный
 feasible -- осуществимый
-feast -- пир (f-)
+feast -- пир 
 feat -- подвиг, ловкость, искусство
 feather -- предмет гордости, достижение
-feathers -- перья !NEW!
+feathers -- перья 
 feature -- особенность, характерная черта
 features -- Особенности 
 February -- февраль
@@ -3032,7 +3033,7 @@ fed -- Кормивший(питаемый)
 fee -- гонорар, платить гонорар
 feeble -- слабый, бледный
 feed -- кормить
-feeding -- питание f-
+feeding -- питание 
 feel -- чувствовать
 feeling -- чувство, чувствующий (от feel)
 feelings -- страсти (от feeling)
@@ -3050,14 +3051,14 @@ feral -- Дикий (не от слова wild)
 ferment -- закваска, фермент; бродить (о вине, варенье)
 ferocious -- дикий
 ferocity -- свирепость
-ferry -- перевоз f-
+ferry -- перевоз 
 fertile -- плодородный
 fertilised -- Оплодотворенный 
 fertility -- Изобилие (не abundance) 
 fertilizer -- удобрение
 festival -- праздник, фестиваль
-fetch -- приносить f-
-fetched -- принесённый, достанный !NEW!
+fetch -- приносить 
+fetched -- принесённый, достанный 
 fever -- жар, лихорадка
 few -- мало
 fickle -- непостоянный, изменчивый
@@ -3085,7 +3086,7 @@ film -- фотопленка, фильм
 filter -- фильтр; фильтровать, просачиваться
 fin -- плавник
 final -- окончательный
-finalize -- завершать f-
+finalize -- завершать 
 finally -- в конце концов
 financial -- финансовый
 find -- найти, находить
@@ -3132,7 +3133,7 @@ flannel -- фланель
 flap -- развеваться, взмахивать (крыльями); взмах (крыльев), клапан
 flare -- вспыхивать; вспышка, осветительная ракета (не flash)
 flash -- вспышка, сверкать
-flashlight -- карманный фонарь !NEW!
+flashlight -- карманный фонарь 
 flashlights -- Прожектора 
 flask -- фляжка
 flat -- квартира, плоский
@@ -3142,7 +3143,7 @@ flavour -- вкус, аромат
 flaw -- изъян, недостаток (не lack)
 flax -- лен, льняное полотно
 flea -- блоха
-fled -- убегал, спасался бегством !NEW!
+fled -- убегал, спасался бегством 
 flee -- бежать
 fleet -- флот
 flesh -- тело, плоть, мясо
@@ -3165,13 +3166,13 @@ flow -- течение, поток, разливаться, течь
 flower -- цветок
 flowerbed -- клумба
 flowery -- цветистый
-flowing -- течение f-
+flowing -- течение 
 flu -- грипп
 fluently -- бегло, гладко
 fluid -- жидкий, жидкость
-flung -- бросал, швырял (не threw) !NEW!
+flung -- бросал, швырял (не threw) 
 flurry -- будоражить
-flush -- (по)краснеть f-
+flush -- (по)краснеть 
 flutter -- махать
 fly -- летать
 flying -- летающий, летный (от fly)
@@ -3183,7 +3184,7 @@ foe -- враг
 fog -- туман
 foggy -- туманный
 fold -- складывать, сгибать, скрещивать (руки); складка
-folded -- складчатый (не crease) !NEW!
+folded -- складчатый (не crease) 
 folder -- папка (для дел), брошюра (амер.)
 folding -- складной -ing
 foliage -- листва
@@ -3200,7 +3201,7 @@ foolish -- глупый
 foot -- нога, фут
 football -- футбол
 footprint -- След 
-footprints -- следы !NEW!
+footprints -- следы 
 footstep -- звук шагов, след ноги
 for -- для, за, на
 forbes -- Форбес 
@@ -3217,13 +3218,13 @@ forehead -- лоб
 foreign -- иностранный
 foreigner -- иностранец
 foreman -- мастер, старший рабочий, техник, прораб
-foremost -- передовой f-
+foremost -- передовой 
 forepaws -- Передние лапы 
 foresight -- предвидение, предусмотрительность
 forest -- лес
 forester -- Лесник 
 forests -- Леса 
-forever -- вечно !NEW!
+forever -- вечно 
 foreword -- предисловие
 forge -- выдумывать
 forgery -- подделка, подлог
@@ -3245,8 +3246,8 @@ forming -- Формирование
 forms -- формы (от form)
 formula -- формула
 fort -- Форт 
-forth -- вперед, впредь, далее (f-)
-forthwith -- тотчас, немедленно f-
+forth -- вперед, впредь, далее 
+forthwith -- тотчас, немедленно 
 fortitude -- стойкость, мужество
 fortnight -- две недели
 fortress -- крепость
@@ -3258,7 +3259,7 @@ forty -- сорок
 forward -- передовой, вперед, впредь
 fossil -- ископаемое
 foster -- воспитывать
-fought -- сражался !NEW!
+fought -- сражался 
 foul -- загрязненный, грязный, бесчестный
 found -- нашел, найденный (от find)
 foundation -- основание
@@ -3270,7 +3271,7 @@ fourth -- четвертый
 fowl -- птица (домашняя)
 fowls -- Домашние птицы 
 fox -- лиса
-fraction -- дробь, частица f-
+fraction -- дробь, частица 
 fracture -- перелом, излом; ломать
 fragile -- хрупкий
 fragment -- отрывок, обрывок
@@ -3282,15 +3283,15 @@ France -- Франция
 frank -- искренний, откровенный, открытый
 frankly -- откровенно
 frantic -- неистовый ******c
-frantically -- неистово !NEW!
+frantically -- неистово 
 franz -- Франз 
 fraud -- обман, фальшивка
 fray -- шумная ссора, обтрепываться
 freakish -- капризный, причудливый
 free -- свободный
-freedom -- свобода f-
+freedom -- свобода 
 freely -- свободно
-freeman -- полноправный гражданин !NEW!
+freeman -- полноправный гражданин 
 freeze -- замерзать
 freezing -- замерзание
 freight -- груз, грузовой
@@ -3309,7 +3310,7 @@ frighten -- пугать
 frightful -- страшный, ужасный
 fringe -- бахрома, край
 fritter -- пончик, крошить
-fro -- обратно !NEW!
+fro -- обратно 
 frog -- лягушка
 frolic -- веселиться, проказничать
 from -- от, из
@@ -3327,7 +3328,7 @@ fuel -- топливо, горючее
 fugitive -- беглый, мимолетный, беглец
 fulfil -- выполнить
 full -- полный
-fully -- вполне, полностью f-
+fully -- вполне, полностью 
 fun -- шутка, веселье
 function -- функция, торжество
 functions -- Функции 
@@ -3339,16 +3340,16 @@ fur -- мех, шкура
 furious -- взбешенный, бешеный, неистовый
 furnace -- печь, топка, горн
 furnish -- снабжать, меблировать, обставлять
-furnished -- снаряженный, оборудованный, экипированный !NEW!
+furnished -- снаряженный, оборудованный, экипированный 
 furniture -- мебель
 furrow -- борозда, колея
 furry -- пушистый (не downy)
 furs -- меха (от fur)
-further -- дальнейший, дополнительный (*u*****)
+further -- дальнейший, дополнительный 
 furthermore -- кроме того
 fury -- неистовство
 fuse -- плавить(ся), сплавлять(ся), перегорать
-fuss -- суета; суетиться, беспокоиться, хлопотать f- (не stir)
+fuss -- суета; суетиться, беспокоиться, хлопотать  (не stir)
 futile -- бесполезный, тщетный, пустой (о человеке)
 future -- будущее
 gag -- затычка, кляп
@@ -3358,7 +3359,7 @@ gained -- Полученный
 galactic -- Галактический 
 galaxy -- Галактика 
 gale -- шторм
-gallant -- доблестный, отважный, смелый, храбрый (g-)
+gallant -- доблестный, отважный, смелый, храбрый 
 gallery -- галерея
 game -- игра
 games -- игры (от game)
@@ -3372,7 +3373,7 @@ gardener -- садовник
 gardening -- садоводство -ing
 gargling -- полоскающий (от gargle)
 garlic -- чеснок
-garment -- одежда, одеяние g-
+garment -- одежда, одеяние 
 garments -- Предметы одежды 
 garret -- мансарда, чердак
 garrison -- гарнизон, ставить гарнизон
@@ -3386,8 +3387,8 @@ gather -- собираться
 gathering -- собрание, сборище -ing
 gaunt -- Изможденный 
 gave -- дал (от give)
-gay -- веселый g-
-gaze -- пристально глядеть, пристальный взгляд g-
+gay -- веселый 
+gaze -- пристально глядеть, пристальный взгляд 
 gear -- механизм
 gem -- драгоценный камень
 gene -- ген
@@ -3400,10 +3401,10 @@ generator -- Генератор
 generosity -- благородство, щедрость
 generous -- великодушный
 genius -- гений
-gentle -- нежный, ласковый g-
+gentle -- нежный, ласковый 
 gentleman -- господин, джентльмен
 gentlemen -- господа (от gentleman)
-gently -- мягко, кротко g-
+gently -- мягко, кротко 
 genuine -- подлинный
 genus -- Род 
 geoff -- Джеф 
@@ -3446,7 +3447,7 @@ gleam -- проблеск, светиться
 gleamed -- Мерцал (не blinked) 
 gleaming -- Блеск -ing 
 glide -- скользить, планировать (авиа)
-glimpse -- мелькание, мельком взглянуть !NEW!
+glimpse -- мелькание, мельком взглянуть 
 glitter -- блеск, блестеть
 glittering -- Сверкание -ing 
 globe -- земной шар, глобус
@@ -3460,7 +3461,7 @@ glossy -- глянцевитый, блестящий (о волосах)
 glove -- перчатка
 gloves -- перчатки (от glove)
 glow -- сильный жар, накаляться (не heat)
-glowing -- Пылающий *l-ing 
+glowing -- Пылающий  
 glue -- клей; клеить, приклеивать
 gnaw -- грызть, глодать
 go -- идти
@@ -3475,17 +3476,17 @@ gold -- золото, золотой
 golden -- золотой, золотистый
 good -- хороший, добрый, добро, польза
 goodbye -- прощание
-goodness -- доброта; великодушие; любезность !NEW!
+goodness -- доброта; великодушие; любезность 
 goods -- товары
 goodwill -- добрая воля
-goon -- придурок !NEW!
+goon -- придурок 
 goose -- гусь
 gooseberry -- крыжовник
 gos -- Идет 
-gosh -- боже !NEW!
+gosh -- боже 
 gossip -- сплетня
 got -- получил, полученный (от get)
-govern -- управлять g-
+govern -- управлять 
 government -- правительство
 governor -- губернатор
 gown -- платье
@@ -3499,32 +3500,32 @@ gradual -- постепенно
 gradually -- постепенно
 graduated -- окончил, окончивший учебное заведение (от graduate)
 grain -- зерно
-grains -- Зерно *r-s 
+grains -- Зерно  
 gram -- грамм
 grammar -- грамматика
 grand -- величественный
 grandchildren -- внуки
-grandeur -- величие, великолепие, грандиозность g-
+grandeur -- величие, великолепие, грандиозность 
 grandfather -- дедушка
 grandmother -- бабушка
 grandparents -- дедушка и бабушка
 grandson -- внук
 granite -- гранит
 grant -- дарить, дар
-granted -- дарованный !NEW!
+granted -- дарованный 
 grapes -- виноград
 graphic -- графический, наглядный, образный
 grasp -- понять, схватить
 grass -- трава
 grasshopper -- кузнечик
 grate -- каминная решетка
-grateful -- благодарный g-
+grateful -- благодарный 
 grater -- терка
-gratified -- Удовлетворенный (*r-) 
+gratified -- Удовлетворенный 
 gratitude -- благодарность
 grave -- могила, серьезный, важный
 gravel -- гравий
-gravely -- серьезно, здраво, рассудительно (*r-) !NEW!
+gravely -- серьезно, здраво, рассудительно 
 graveyard -- Кладбище 
 gravity -- серьезность
 gravy -- подливка, соус
@@ -3533,7 +3534,7 @@ graze -- задевать, оцарапать, содрать (кожу)
 grease -- жир, сало, мазь, смазка; смазывать (жиром)
 greasy -- жирный, сальный
 great -- великий
-greater -- больше !NEW!
+greater -- больше 
 greatest -- самый большой (от great)
 greatly -- очень
 greedy -- жадный
@@ -3552,7 +3553,7 @@ grieved -- Огорченный
 grievously -- горестно
 grill -- решетка
 grim -- жестокий, свирепый, мрачный
-grimly -- жестоко, решительно !NEW!
+grimly -- жестоко, решительно 
 grin -- ухмыляться, усмешка
 grind -- молоть, толочь, точить
 grip -- схватывание
@@ -3563,11 +3564,11 @@ grotesque -- преувеличение
 ground -- земля
 grounds -- Основания(земля) 
 group -- группа
-grouping -- классификация g-ing
+grouping -- классификация ing
 groups -- Группы 
 grow -- расти
 growing -- растущий
-growl -- рычать, ворчать; рычание, ворчание g-
+growl -- рычать, ворчать; рычание, ворчание 
 growled -- Рычал 
 grown -- выращенный (от grow)
 growth -- рост
@@ -3587,8 +3588,8 @@ guffaw -- хохот
 guidance -- руководство
 guide -- гид, экскурсовод
 guided -- Управляемый(руководствуемый) 
-guilt -- вина, виновность g-
-guilty -- виноватый (g-)
+guilt -- вина, виновность 
+guilty -- виноватый 
 guinea -- гинея (золотая монета, денежная единица; = 21 шиллингу)
 gulf -- залив, бухта
 gull -- чайка
@@ -3597,11 +3598,11 @@ gum -- смола, клей; склеивать(ся) (не tar)
 gums -- десны
 gun -- ружье, пушка
 gunpowder -- порох
-gurgle -- бульканье (g-)
+gurgle -- бульканье 
 gus -- Гас 
 gust -- порыв (ветра)
 gutter -- водосточный желоб, канава
-guy -- парень g- !NEW!
+guy -- парень  
 habit -- привычка
 habits -- Привычки 
 had -- вспомогательный глагол, имел (от have), не has
@@ -3611,10 +3612,10 @@ hairpin -- шпилька
 hairs -- Волосы 
 hairy -- волосатый
 half -- половина
-halfway -- на полпути !NEW!
+halfway -- на полпути 
 hall -- зал
 halt -- остановка, останавливать (не stop)
-halted -- Приостановленный *a- 
+halted -- Приостановленный  
 ham -- ветчина
 hammer -- молоток
 hammock -- гамак
@@ -3629,10 +3630,10 @@ handled -- Обработанный
 handling -- обращение -ing
 hands -- руки (от hand)
 handsome -- красивый
-handy -- удобный; ловкий, искусный (h-)
+handy -- удобный; ловкий, искусный 
 hang -- повесить, висеть
 hanging -- подвешивание
-hanky -- носовой платок !NEW!
+hanky -- носовой платок 
 hannah -- Ханна 
 hans -- Ханьшуй 
 happen -- случаться, происходить
@@ -3666,7 +3667,7 @@ harvest -- урожай
 has -- имеет (от have)
 haste -- спешка
 hasten -- торопить(ся)
-hastened -- поторопленный !NEW!
+hastened -- поторопленный 
 hastily -- поспешно, опрометчиво
 hasty -- поспешный, необдуманный
 hat -- шляпа
@@ -3724,10 +3725,10 @@ hedwig -- Хедвиг
 heed -- внимание, слушать внимательно
 heedless -- невнимательный, небрежный
 heel -- пятка, каблук
-heels -- пятки !NEW!
+heels -- пятки 
 height -- высота
 heir -- наследник
-held -- держал !NEW!
+held -- держал 
 helium -- Гелий 
 hell -- черт
 hello -- привет
@@ -3761,12 +3762,12 @@ hers -- ее
 herself -- себя
 hesitate -- колебаться
 hesitation -- Колебание 
-hey -- эй !NEW!
+hey -- эй 
 hi -- привет
-hick -- провинциал, деревенщина !NEW!
+hick -- провинциал, деревенщина 
 hide -- прятать, спрятать
 hideous -- безобразный, уродливый, страшный (не fearful)
-high -- высокий (h-)
+high -- высокий 
 higher -- выше
 highly -- очень, весьма
 highness -- высота, возвышенность (не altitude)
@@ -3785,7 +3786,7 @@ hip -- ягода шиповника
 hire -- взять напрокат
 his -- его (-s)
 hiss -- свистеть, шипеть, свист
-hissed -- шипящий (-ed) !NEW!
+hissed -- шипящий (-ed) 
 hist -- тише!, тс! 
 historic -- исторический
 historical -- исторический
@@ -3811,13 +3812,13 @@ holes -- Отверстия
 holiday -- отпуск, праздник
 holidays -- каникулы (не vacation)
 hollow -- пустой
-hols -- каникулы, отпуск !NEW!
+hols -- каникулы, отпуск 
 holy -- священный, святой
 home -- дом
 homes -- дома (от home)
 homework -- домашнее задание
 honest -- честный
-honestly -- честно !NEW!
+honestly -- честно 
 honey -- мед
 honeycomb -- соты
 honor -- Честь 
@@ -3837,7 +3838,7 @@ hop -- хмель (бот.)
 hope -- надеяться
 hoped -- надеялся (от hope)
 hopeful -- надеющийся, подающий надежды, многообещающий
-hopefully -- с надеждой !NEW!
+hopefully -- с надеждой 
 hopeless -- безнадежный
 hopes -- Надежды 
 hopped -- Прыгал (не sprang, leaped, jumped) 
@@ -3849,7 +3850,7 @@ horizontally -- Горизонтально
 horn -- рог, забодать
 horns -- Рожки 
 horrible -- ужасный h-
-horrid -- ужасный *o- !NEW!
+horrid -- ужасный *o- 
 horror -- ужас h-
 horse -- лошадь
 horseman -- наездник
@@ -3891,15 +3892,15 @@ hunchback -- горбун
 hundred -- сто
 hundreds -- Сотни 
 hundredth -- сотый
-hung -- вешал, был склонным !NEW!
-hunger -- голод (h-)
+hung -- вешал, был склонным 
+hunger -- голод 
 hungry -- голодный (не от слова starve)
 hunt -- охотиться
 hunter -- охотник
 hunting -- охота
 hurricane -- ураган h-
 hurried -- спешил, торопился (от hurry)
-hurriedly -- поспешно !NEW!
+hurriedly -- поспешно 
 hurry -- спешить, торопиться, спешка
 hurt -- рана, болеть, причинить боль, повредить
 hurts -- болеет, причиняет боль, повреждает (от hurt)
@@ -4059,7 +4060,7 @@ ingredient -- составная часть
 inhabit -- жить, обитать
 inhabitant -- житель
 inhabitants -- Жители 
-inhabited -- Населенный *n- 
+inhabited -- Населенный  
 inhale -- вдыхать
 inherent -- неотъемлемый, присущий, свойственный (не Integral)
 inherit -- (у)наследовать
@@ -4083,7 +4084,7 @@ innocent -- наивный, невинный
 innumerable -- бесчисленный
 input -- Вход 
 inquire -- спрашивать, узнавать
-inquired -- осведомлённый (не informed) !NEW!
+inquired -- осведомлённый (не informed) 
 inquiries -- справочное (от inquiry)
 inquiry -- расспросы, наведение справок
 inquisitive -- любопытный
@@ -4109,7 +4110,7 @@ installer -- Монтажник
 installing -- Монтаж -ing 
 installs -- Устанавливает 
 instance -- пример
-instances -- Случаи *n- 
+instances -- Случаи  
 instant -- мгновение
 instantly -- немедленно
 instead -- вместо, взамен
@@ -4136,7 +4137,7 @@ intent -- намерение, цель i-
 intention -- намерение, замысел
 intentional -- умышленный
 intentions -- Намерения 
-intently -- внимательно !NEW!
+intently -- внимательно 
 interbase -- Межоснова 
 intercept -- перехватывать
 intercourse -- общение
@@ -4238,7 +4239,7 @@ jealousy -- ревность
 jean -- Хлопчатобумажная ткань 
 jeanne -- Джин 
 jeans -- джинсы
-jeer -- насмешка *e-
+jeer -- насмешка *
 jeff -- Джеф 
 jelly -- желе
 jenny -- Дженни 
@@ -4260,7 +4261,7 @@ jo -- Джо
 joan -- Джоан 
 job -- работа
 jobs -- работы (от job)
-joe -- кофе !NEW!
+joe -- кофе 
 join -- соединяться
 joining -- соединение
 joint -- совместный, объединенный (j-)
@@ -4291,7 +4292,7 @@ jumper -- джемпер
 June -- июнь
 jungle -- джунгли
 junior -- младший
-junk -- рухлядь !NEW!
+junk -- рухлядь 
 jury -- присяжные, жюри
 just -- только, всего лишь, справедливый
 justice -- справедливость
@@ -4335,8 +4336,8 @@ kitchen -- кухня
 kitten -- котенок
 kitty -- цель (в игре в кегли)
 knee -- колено
-knees -- колени !NEW!
-knelt -- стоял на коленях !NEW!
+knees -- колени 
+knelt -- стоял на коленях 
 knew -- знал (от know)
 knife -- нож
 knight -- рыцарь
@@ -4345,7 +4346,7 @@ knit -- вязать, связывать
 knitted -- вязанный, трикотажный
 knob -- knob -- НЕВЫУЧЕННОЕ СЛОВО 
 knock -- стучать, стук
-knocked -- стучать (2 форма) *n- !NEW!
+knocked -- стучать (2 форма)  
 knot -- узел, завязывать узел (не kink)
 know -- знать
 knowing -- знание, знающий
@@ -4363,7 +4364,7 @@ lad -- мальчик, юноша, парень (не guy)
 ladder -- лестница (не stairs)
 laden -- Груженый, нагруженный, обремененный 
 ladies -- дамы (от lady)
-lads -- парни (не guys) !NEW!
+lads -- парни (не guys) 
 lady -- дама, госпожа
 laid -- происходил, совершался (от lay)
 lake -- озеро
@@ -4385,7 +4386,7 @@ lap -- подол
 lapse -- описка
 lard -- топленое свиное сало
 large -- большой
-largely -- обильно *a-
+largely -- обильно 
 larger -- Больший 
 largest -- Самый большой 
 lark -- жаворонок
@@ -4397,7 +4398,7 @@ latch -- запирать(ся)
 late -- поздно
 lately -- за последнее время
 later -- позже
-lateral -- Боковой *a- 
+lateral -- Боковой  
 latest -- последний (не latter)
 latter -- последний
 laugh -- смех, смеяться
@@ -4430,7 +4431,7 @@ leak -- просачиваться
 lean -- прислоняться, наклоняться, наклон
 leap -- високосный, прыжок, прыгать
 leaped -- Прыгал (не sprang, jumped, hopped) 
-leapt -- прыгал !NEW!
+leapt -- прыгал 
 learn -- узнать, учиться
 learned -- ученый
 learning -- учение
@@ -4488,7 +4489,7 @@ light -- свет, освещение, фара, освещать, зажига�
 lighter -- зажигалка
 lighthouse -- маяк
 lighting -- освещение
-lightly -- слегка !NEW!
+lightly -- слегка 
 lightning -- молния
 lights -- фары (от light)
 like -- любить, нравиться, похожий, подобный
@@ -4496,11 +4497,11 @@ liked -- нравился, любил (от like)
 likelihood -- вероятность
 likely -- вероятно
 likeness -- сходство l-
-likewise -- так же !NEW!
+likewise -- так же 
 lilac -- сирень, сиреневый
 lily -- лилия
 limb -- конечность (анат.)
-limbs -- конечности !NEW!
+limbs -- конечности 
 lime -- известь
 limit -- предел, граница
 limitation -- ограничение
@@ -4521,7 +4522,7 @@ list -- список
 listen -- слушать
 listened -- слушал (от listen)
 listener -- слушатель
-lit -- освещённый !NEW!
+lit -- освещённый 
 literal -- буквальный
 literary -- литературный
 literature -- литература
@@ -4542,7 +4543,7 @@ lobby -- вестибюль
 lobes -- Лепестки 
 lobster -- омар
 local -- местный
-locate -- определять местоположение !NEW!
+locate -- определять местоположение 
 located -- Расположенный 
 location -- местоположение
 locations -- Местоположения 
@@ -4559,7 +4560,7 @@ log -- бревно
 logic -- логика
 login -- Логин 
 logs -- Бревна 
-loneliness -- одиночество !NEW!
+loneliness -- одиночество 
 lonely -- одинокий
 long -- длинный, долгий, долго
 longer -- длиннее (от long)
@@ -4579,7 +4580,7 @@ losing -- проигрыш, проигранный
 loss -- потеря, утрата
 lost -- потерял, проиграл, потерянный, проигранный (от lose)
 lot -- много
-lots -- уйма, куча, множество (не pile) !NEW!
+lots -- уйма, куча, множество (не pile) 
 loud -- громкий
 louder -- громче
 loudly -- громко
@@ -4619,7 +4620,7 @@ madam -- госпожа
 madame -- Мадам 
 made -- делал, сделанный (от make)
 madeira -- Мадейра 
-madly -- безумно !NEW!
+madly -- безумно 
 magazine -- журнал
 magazines -- журналы (от magazine)
 magic -- волшебный m-
@@ -4639,7 +4640,7 @@ majority -- большинство
 make -- делать, производить
 maker -- производитель (m-)
 makes -- делает (от make)
-making -- создание, становление (процесс) !NEW!
+making -- создание, становление (процесс) 
 male -- мужчина, самец
 malice -- злоба
 malicious -- злобный
@@ -4660,7 +4661,7 @@ manipulate -- манипулировать
 manipulation -- Манипуляция 
 mankind -- человечество
 manner -- способ, образ действия, манера
-manners -- способы (не methods) !NEW!
+manners -- способы (не methods) 
 manoeuvre -- маневр, маневрировать
 mansfield -- Мансфилд 
 mansion -- дворец
@@ -4731,7 +4732,7 @@ mean -- означать
 meaning -- значение
 meaningless -- бессмысленный
 means -- средство, способ
-meant -- означаемый, подразумеваемый !NEW!
+meant -- означаемый, подразумеваемый 
 meantime -- между тем
 meanwhile -- тем временем, между тем
 measles -- корь
@@ -4813,7 +4814,7 @@ million -- миллион
 millions -- Миллионы 
 mind -- память, мнение, помнить, возражать
 minded -- Склонный 
-minds -- ум !NEW!
+minds -- ум 
 mine -- мой (употребляется без последующего существительного)
 mineral -- минeральный
 mingled -- Смешанный 
@@ -4865,7 +4866,7 @@ moderately -- Умеренно
 modern -- современный
 modest -- скромный m-
 modification -- Модификация 
-modified -- видоизменённый !NEW!
+modified -- видоизменённый 
 modify -- модифицировать
 module -- Модуль 
 moist -- сырой, влажный m-
@@ -4892,13 +4893,13 @@ monument -- памятник (не memorial)
 monuments -- памятники (от monument)
 mood -- настроение
 moon -- луна
-moonlight -- лунный свет !NEW!
+moonlight -- лунный свет 
 mop -- швабра, подтирать
 moral -- нравственный
 more -- еще, больше
 moreover -- кроме того
 morning -- утро
-morrow -- завтра, завтрашний день; следующий день !NEW!
+morrow -- завтра, завтрашний день; следующий день 
 morsel -- кусочек -l
 mortal -- смертный, смертельный (не lethal)
 mortgage -- заклад, залог
@@ -4940,7 +4941,7 @@ ms -- Госпожа
 much -- много (с неисчисляемыми существительными)
 mud -- грязь
 muddy -- грязный, мутный
-muffled -- закутанный, укутанный, завёрнутый (не wrapped) !NEW!
+muffled -- закутанный, укутанный, завёрнутый (не wrapped) 
 muffler -- шарф
 mug -- кружка
 muggy -- теплый, влажный, удушливый
@@ -5012,7 +5013,7 @@ nearby -- поблизости (nearby)
 nearest -- ближайший (от near)
 nearly -- почти, приблизительно (не almost)
 neat -- чистый, опрятный n-
-neatly -- аккуратно !NEW!
+neatly -- аккуратно 
 necessarily -- обязательно
 necessary -- нужный, необходимый
 necessity -- необходимость
@@ -5134,7 +5135,7 @@ nuts -- орехи (от nut)
 nylon -- нейлон, нейлоновый
 oak -- дуб
 oar -- весло
-oars -- вёсла !NEW!
+oars -- вёсла 
 oath -- клятва, присяга
 obedience -- послушание
 obedient -- послушный
@@ -5151,7 +5152,7 @@ obliged -- обязан, признателен (от oblige)
 obscure -- затемнять, затруднять понимание
 observation -- наблюдение, замечание
 observe -- наблюдать, замечать (не outlook)
-observed -- наблюдаемый !NEW!
+observed -- наблюдаемый 
 observer -- наблюдатель
 obstacle -- препятствие
 obtain -- добиваться
@@ -5163,7 +5164,7 @@ occasional -- случайный
 occasionally -- изредка
 occasioned -- Причиняемый 
 occupation -- занятие
-occupied -- занятый !NEW!
+occupied -- занятый 
 occupy -- занимать, завоёвывать
 occur -- случаться
 occurrence -- Возникновение 
@@ -5178,7 +5179,7 @@ of -- предлог родительного падежа (кого?, чего?
 off -- прочь, от
 offence -- обида
 offend -- обижать, обидеть (o-)
-offended -- обиженный !NEW!
+offended -- обиженный 
 offensive -- наступление
 offer -- предлагать
 offering -- предложение
@@ -5345,7 +5346,7 @@ paragraph -- параграф
 parallel -- параллельный
 parameter -- Параметр 
 parameters -- Параметры 
-parcel -- пакет *a-
+parcel -- пакет 
 parchment -- Пергамент 
 pardon -- извинение
 parent -- родитель, родственник
@@ -5376,7 +5377,7 @@ parts -- части (от part)
 party -- вечеринка, группа
 pass -- передавать, проходить, пропуск, перевал
 passage -- проход
-passages -- проходы !NEW!
+passages -- проходы 
 passed -- прошел (от pass)
 passenger -- пассажир
 passengers -- Пассажиры 
@@ -5400,7 +5401,7 @@ patrol -- патруль
 patsy -- Паци 
 patted -- Ласкал 
 pattern -- модель
-paul -- пол !NEW!
+paul -- пол 
 pause -- пауза
 pausing -- Приостановка -ing 
 pavement -- тротуар (не sidewalk)
@@ -5435,7 +5436,7 @@ peeks -- (он) Посмотрит -s
 peel -- чистить, почистить
 peep -- проблеск, выглядывать
 peer -- вглядываться, всматриваться p-
-peered -- Глядел (*e-) 
+peered -- Глядел (*) 
 peering -- Глядя -ing 
 peeves -- Обиды 
 peg -- целиться
@@ -5514,7 +5515,7 @@ physically -- физически
 physician -- врач
 piano -- пианино
 pick -- собирать, подбирать, выбирать
-picked -- собранный, выбранный !NEW!
+picked -- собранный, выбранный 
 pickles -- маринованные огурцы
 picnic -- пикник
 picture -- картина, изображение, рисовать, описывать
@@ -5587,7 +5588,7 @@ plays -- играет (от play)
 playwright -- драматург
 pleaded -- Умолял 
 pleasant -- приятный
-pleasantly -- приятно !NEW!
+pleasantly -- приятно 
 please -- пожалуйста (только в просьбе)
 pleased -- довольный
 pleasure -- удовольствие
@@ -5608,7 +5609,7 @@ plunged -- Погруженный
 plural -- множественное число (грам.)
 plus -- плюс
 pocket -- карман
-pockets -- карманы !NEW!
+pockets -- карманы 
 pod -- стручок, лущить
 poem -- стихотворение, поэма
 poems -- стихи (от poem)
@@ -5616,7 +5617,7 @@ poet -- поэт
 poetry -- поэзия, стихи
 point -- точка, пункт, суть дела, указывать, показывать
 pointed -- острый, многозначительный, совершенно очевидный
-pointing -- указывающий (-ing) !NEW!
+pointing -- указывающий (-ing) 
 points -- Пункты(точки) 
 poison -- яд, отравлять
 poisonous -- ядовитый
@@ -5629,7 +5630,7 @@ policeman -- полицейский
 policy -- политика
 polish -- лак
 polite -- любезный, вежливый
-politely -- вежливо !NEW!
+politely -- вежливо 
 politeness -- Вежливость 
 political -- политический
 politics -- политика
@@ -5663,7 +5664,7 @@ position -- положение
 positive -- положительный
 positively -- Положительно 
 possess -- обладать
-possessed -- хладнокровный, владеющий собой, одержимый !NEW!
+possessed -- хладнокровный, владеющий собой, одержимый 
 possession -- владение
 possibility -- возможность p-
 possible -- возможный
@@ -5787,7 +5788,7 @@ privilege -- привилегия
 privileged -- привилегированный
 prize -- приз
 probability -- вероятность
-probable -- вероятный (-e)
+probable -- вероятный 
 probably -- вероятно (-y)
 problem -- проблема
 problems -- проблемы (от problem)
@@ -5910,7 +5911,7 @@ pursued -- Преследуемый
 pursuing -- Преследование -ing 
 pursuit -- преследование, погоня, занятие
 push -- толкать
-pushed -- вытолкнутый !NEW!
+pushed -- вытолкнутый 
 pushing -- Подталкивание(выдвижение) -ing 
 put -- класть, размещать
 puzzle -- приводить в затруднение, загадка
@@ -5958,7 +5959,7 @@ radiant -- лучистый, сияющий, лучезарный
 radiator -- радиатор
 radio -- радио
 radioactive -- радиоактивный
-raft -- плот !NEW!
+raft -- плот 
 rag -- тряпка, лохмотья
 rage -- гнев, ярость (не fury)
 ragged -- истрепанный, оборванный, рваный r-
@@ -5980,7 +5981,7 @@ ram -- баран
 ran -- бежал, убежавший (от run)
 ranch -- ранчо
 random -- случайный, беспорядочный
-rang -- звонил !NEW!
+rang -- звонил 
 range -- ряд, линия, диапазон
 ranger -- скиталец
 rank -- ряд, чин, выстраивать
@@ -6089,9 +6090,9 @@ refusal -- отказ
 refuse -- отказывать
 refused -- отказался (от refuse)
 regain -- достичь
-regard -- взгляд, внимание, смотреть, считать *e-
+regard -- взгляд, внимание, смотреть, считать *
 regarded -- Расцененный 
-regarding -- Относительно *e-ing 
+regarding -- Относительно *ing 
 regardless -- независимо от
 regards -- привет, поклон
 regiment -- полк
@@ -6126,7 +6127,7 @@ reliance -- доверие, уверенность
 relic -- след, остаток, пережиток
 relief -- облегчение, утешение
 relieve -- облегчать
-relieved -- избавленный !NEW!
+relieved -- избавленный 
 religion -- религия
 religious -- религиозный
 relish -- вкус, привкус, смаковать
@@ -6135,12 +6136,12 @@ reluctantly -- неохотно (не unwillingly)
 rely -- полагаться, доверять
 remain -- оставаться
 remainder -- остаток
-remained -- оставшийся !NEW!
+remained -- оставшийся 
 remains -- Остается 
 remark -- замечать, замечание (не notice)
 remarkable -- замечательный  r-
 remarkably -- замечательно -y
-remarks -- Замечания *e- 
+remarks -- Замечания * 
 remedy -- лекарство
 remember -- помнить
 remembered -- помнил (от remember)
@@ -6150,7 +6151,7 @@ remiss -- небрежный, вялый
 remote -- дистанционный, удаленный
 removal -- перемещение r-
 remove -- удалять, убирать, перемещать
-removed -- удалённый !NEW!
+removed -- удалённый 
 renamed -- Переименованный 
 render -- отдавать
 rendered -- Предоставленный (не supplied) 
@@ -6191,14 +6192,14 @@ request -- просьба
 requested -- Требуемый 
 requests -- просьбы (от request)
 require -- требовать
-required -- потребованный (не demanded) !NEW!
+required -- потребованный (не demanded) 
 requirement -- требование
 requires -- Требует 
 rescue -- спасение, спасать
 research -- исследование
 resemblance -- сходство
 resemble -- походить
-resent -- обижаться, возмущаться *e-
+resent -- обижаться, возмущаться *
 resentment -- возмущение
 reservation -- предварительный заказ, резервирование
 reserve -- заказывать
@@ -6215,7 +6216,7 @@ resist -- сопротивляться
 resistance -- сопротивление
 resolution -- решение, резолюция, решимость
 resolve -- решать
-resolved -- решился, принял решение !NEW!
+resolved -- решился, принял решение 
 resort -- обращение, обращаться
 resource -- ресурс, средство
 resources -- Ресурсы 
@@ -6323,9 +6324,9 @@ robot -- Робот
 robots -- Роботы 
 rochester -- Рочестер 
 rock -- скала
-rocky -- скалистый !NEW!
+rocky -- скалистый 
 rod -- прут, жезл, удочка
-rode -- ехать (2 форма) !NEW!
+rode -- ехать (2 форма) 
 rogue -- плут, мошенник (не valet)
 role -- роль
 roll -- вращение, список, булочка, вращаться, катить(ся)
@@ -6392,7 +6393,7 @@ rust -- ржавчина, ржаветь
 rustle -- шелест, шорох, шелестеть, шуршать r-
 rusty -- заржавленный, порыжевший
 rut -- колея, привычка
-ruth -- жалость, сочувствие, участие, сострадание *u- !NEW!
+ruth -- жалость, сочувствие, участие, сострадание *u- 
 rye -- рожь
 sabotage -- саботаж, саботировать
 sack -- мешок
@@ -6418,7 +6419,7 @@ salmon -- лосось
 salt -- соль, соленый, солить
 salts -- Соли 
 salute -- приветствовать, салют
-salvage -- спасать !NEW!
+salvage -- спасать 
 salvation -- спасение
 sam -- Сэм 
 same -- тот же, так(ой) же
@@ -6430,7 +6431,7 @@ sandwiches -- Бутерброды
 sandy -- песчаный
 sang -- пел, спел (от sing)
 sanguine -- живой, жизнерадостный, румяный (не spirited)
-sank -- тонул !NEW!
+sank -- тонул 
 santos -- Сантус 
 sap -- сок (растений); подрывать
 sat -- сидел (от sit)
@@ -6460,7 +6461,7 @@ scar -- шрам, рубец
 scarce -- редкий, едва (не barely, merely, hardly)
 scarcely -- едва sc-
 scare -- испуг
-scared -- напуганный !NEW!
+scared -- напуганный 
 scarf -- шарф
 scarlet -- алый
 scatter -- разбрасывать, рассеивать
@@ -6508,7 +6509,7 @@ sculpture -- скульптура
 sea -- море, океан
 seal -- печать, запечатывать
 seam -- шов
-seaman -- моряк *e-
+seaman -- моряк *
 search -- искать, обыскивать, поиск, обыск
 seasick -- страдающий морской болезнью
 seaside -- морское побережье
@@ -6539,7 +6540,7 @@ seeming -- видимый, мнимый (не visible)
 seen -- увиденный (от see)
 segment -- Доля (не portion, section) 
 seize -- хватать -e
-seized -- захваченный !NEW!
+seized -- захваченный 
 seldom -- редко
 select -- выбирать, сортировать, избранный
 selected -- Отобранный 
@@ -6594,7 +6595,7 @@ seventh -- седьмой
 seventy -- семьдесят
 several -- несколько
 severe -- суровый, жестокий (s-)
-severely -- строго (*e-)
+severely -- строго (*)
 sew -- шить
 sex -- пол
 sexual -- сексуальный
@@ -6648,8 +6649,8 @@ shocking -- потрясающий
 shoe -- ботинок, туфля
 shoemaker -- сапожник
 shoes -- обувь, туфли (от shoe)
-shone -- сиял, блестел !NEW!
-shook -- трёс !NEW!
+shone -- сиял, блестел 
+shook -- трёс 
 shoot -- стрелять, застрелить
 shooting -- Стрельба 
 shop -- магазин, мастерская
@@ -6680,7 +6681,7 @@ shrimp -- креветка
 shrine -- сохранять
 shrink -- отпрянуть, садиться (о материи)
 shrub -- куст
-shrubs -- кусты (не bushes) !NEW!
+shrubs -- кусты (не bushes) 
 shrug -- пожимать плечами
 shrugged -- Пожал 
 shudder -- дрожь, вздрагивать; содрогаться
@@ -6727,7 +6728,7 @@ simultaneous -- одновременный
 simultaneously -- одновременно
 sin -- грех, (со)грешить
 since -- с тех пор как
-sincere -- искренний (-e)
+sincere -- искренний 
 sincerely -- Искренне (не earnestly) 
 sing -- пение, петь
 singing -- Пение 
@@ -6759,10 +6760,10 @@ skill -- мастерство
 skilled -- квалифицированный, умелый, ловкий
 skim -- просматривать, скользить
 skin -- кожа
-skinner -- погонщик !NEW!
-skinny -- худой, тощий, кожа да кости !NEW!
+skinner -- погонщик 
+skinny -- худой, тощий, кожа да кости 
 skins -- Кожи 
-skip -- пропускать (часто бывает при устано !NEW!
+skip -- пропускать (часто бывает при устано 
 skirt -- юбка
 skull -- череп
 sky -- небо
@@ -6776,7 +6777,7 @@ slant -- наклонный
 slap -- хлопать
 slaughter -- резня, убой, резать, убивать
 slave -- раб
-slaves -- рабы !NEW!
+slaves -- рабы 
 sledge -- ехать на санях
 sleek -- гладкий, приглаживать
 sleep -- спать, сон
@@ -6786,7 +6787,7 @@ sleigh -- сани, салазки
 slender -- тонкий, стройный
 slept -- спал (от sleep)
 slice -- ломоть
-slid -- скользить (не slip) !NEW!
+slid -- скользить (не slip) 
 slide -- скользить
 slight -- проявление пренебрежительного равнодушия;неуважение, пренебрежение, игнорирование
 slightest -- малейший (от slight)
@@ -6819,7 +6820,7 @@ smoked -- курил (от smoke)
 smoker -- курящий, вагон для курящих
 smoking -- курение
 smooth -- гладкий
-smoothly -- гладко !NEW!
+smoothly -- гладко 
 snack -- закуска, часть, доля
 snake -- змея
 snap -- щелкать (snap)
@@ -6833,7 +6834,7 @@ sniff -- фыркать, сопеть
 sniffed -- Фыркал 
 sniffing -- Фыркающий 
 snigger -- хихикать, хихиканье s-
-snoop -- подсматривать !NEW!
+snoop -- подсматривать 
 snore -- храпеть, храп
 snorted -- Фыркал (не от слова sniff) 
 snow -- снег, падать (о снеге)
@@ -6870,10 +6871,10 @@ solitude -- одиночество, уединение
 solution -- решение, разрешение
 solve -- (раз)решать
 some -- немного, несколько
-somehow -- как-нибудь, так или иначе !NEW!
+somehow -- как-нибудь, так или иначе 
 sometimes -- иногда
-somewhat -- что-то, отчасти !NEW!
-somewhere -- где-нибудь !NEW!
+somewhat -- что-то, отчасти 
+somewhere -- где-нибудь 
 son -- сын
 song -- песня
 sons -- сыновья (от son)
@@ -6953,13 +6954,13 @@ spent -- проводил, тратил, проведенный, потраче�
 sphere -- сфера
 spider -- паук
 spiders -- Пауки 
-spike -- острие !NEW!
+spike -- острие 
 spill -- проливать(ся), рассыпать(ся)
 spin -- прясть, крутить(ся)
 spine -- позвоночный столб
 spirit -- дух
 spirited -- живой, бойкий
-spirits -- души !NEW!
+spirits -- души 
 spit -- плеваться, фыркать
 spite -- злость
 spiteful -- злобный
@@ -6969,7 +6970,7 @@ splinter -- щепка, осколок, заноза
 split -- раскалывать
 spoil -- портить, баловать
 spoke -- говорил, говоривший (от speak)
-spoken -- сказанный !NEW!
+spoken -- сказанный 
 sponsorship -- попечительство
 spoon -- ложка
 spoons -- ложки (от spoon)
@@ -7029,7 +7030,7 @@ standing -- репутация, вес, положение в обществе, 
 standstill -- застой (не stagnation)
 star -- звезда
 stare -- пристальный взгляд
-stared -- пристальный !NEW!
+stared -- пристальный 
 starling -- скворец
 start -- начинать, отправляться s-
 starter -- стартер
@@ -7067,14 +7068,14 @@ stems -- Стебли
 step -- шаг, шагать (step)
 stepfather -- отчим
 stephen -- Стивен 
-sterile -- бесплодный !NEW!
+sterile -- бесплодный 
 sterility -- Бесплодие 
 stern -- строгий
-sternly -- строго !NEW!
+sternly -- строго 
 steve -- Стив 
 stew -- тушеное мясо
 stick -- палка, приставать
-sticking -- торчащий, приклеенный (-ing) !NEW!
+sticking -- торчащий, приклеенный (-ing) 
 sticks -- Палки 
 sticky -- липкий, клейкий
 stiff -- негнущийся, застывший, холодный, натянутый
@@ -7086,7 +7087,7 @@ stock -- запас, снабжать (не spare, hoard)
 stocking -- чулок
 stockings -- чулки (от stocking)
 stocks -- Акции(запасы) 
-stocky -- коренастый, низкий, приземистый !NEW!
+stocky -- коренастый, низкий, приземистый 
 stolen -- украденный (от steal)
 stomach -- живот, желудок
 stone -- камень
@@ -7131,7 +7132,7 @@ street -- улица
 strength -- численность, сила, прочность
 strengthen -- усиливать, укреплять
 stretch -- растягивать, вытягиваться
-stretched -- растянутый !NEW!
+stretched -- растянутый 
 stretching -- Протяжение 
 strict -- точный
 strictly -- строго *t-
@@ -7142,19 +7143,19 @@ strings -- Вереницы(нити) (не threads)
 strip -- полоса
 striped -- полосатый
 stripes -- Полосы 
-strode -- походка, большой шаг (прошедшее время) !NEW!
+strode -- походка, большой шаг (прошедшее время) 
 stroke -- удар, гладить *t
 stroll -- прогулка, гулять
 strong -- сильный
 strongest -- Самый сильный 
 stronghold -- крепость, оплот
 strongly -- решительно (первая буква НЕ "d")
-struck -- забастовка, удар (прошедшее время) !NEW!
+struck -- забастовка, удар (прошедшее время) 
 structure -- структура
 struggle -- бороться, борьба
 struggling -- Борьба 
 stubborn -- упрямый
-stuck -- воткнул, приклеил !NEW!
+stuck -- воткнул, приклеил 
 stud -- запонка
 student -- студент
 students -- студенты (от student)
@@ -7290,7 +7291,7 @@ susan -- Сьюзен
 suspect -- подозревать
 suspected -- Подозреваемый 
 suspend -- приостанавливать
-suspended -- приостановленный !NEW!
+suspended -- приостановленный 
 suspense -- неизвестность
 suspension -- приостановка, пауза, перерыв
 suspicion -- подозрение
@@ -7312,9 +7313,9 @@ sweetheart -- возлюбленный(ая), дорогой(ая) (как об�
 sweetness -- Сладость 
 swell -- отличный, превосходный
 swelling -- воспаление, отек -ing
-swept -- подметал !NEW!
+swept -- подметал 
 swift -- быстрый (не speed)
-swiftly -- быстро !NEW!
+swiftly -- быстро 
 swig -- потягивать вино
 swim -- плавать
 swimmer -- пловец
@@ -7337,7 +7338,7 @@ table -- стол, таблица, расписание
 tables -- Столы 
 tablets -- таблетки (от tablet)
 tack -- линия, курс (t-)
-tackle -- хватать *a-
+tackle -- хватать 
 tactics -- тактика
 tag -- бирка, ярлык
 tail -- конец, хвост
@@ -7375,7 +7376,7 @@ team -- команда
 teams -- команды (от team)
 tear -- слеза, разрыв, (по)рвать
 tearing -- Разрывание -ing 
-tears -- слёзы !NEW!
+tears -- слёзы 
 tease -- дразнить, задира
 technical -- технический
 technician -- специалист t-
@@ -7405,8 +7406,8 @@ tenant -- арендатор, жилец
 tend -- иметь тенденцию
 tendency -- тенденция
 tender -- нежный t-
-tenderly -- нежно, мягко !NEW!
-tenderness -- нежность !NEW!
+tenderly -- нежно, мягко 
+tenderness -- нежность 
 tennis -- теннис
 tense -- время (грам.)
 tent -- палатка
@@ -7448,7 +7449,7 @@ then -- тогда, потом, затем
 thence -- Отсюда 
 theory -- теория
 there -- там, туда, вот
-thereafter -- после этого; впоследствии (не afterwards) !NEW!
+thereafter -- после этого; впоследствии (не afterwards) 
 thereby -- таким образом t-
 therefore -- поэтому, следовательно
 thereupon -- после чего, на что
@@ -7484,21 +7485,21 @@ thou -- Вы
 though -- хотя, несмотря на
 thought -- думал, обдуманный (от think), мысль
 thoughtful -- задумчивый, погруженный в размышления
-thoughtfully -- внимательно !NEW!
+thoughtfully -- внимательно 
 thoughtless -- необдуманный, беспечный, эгоистичный
 thousand -- тысяча
 thrash -- молотить, бить
 thread -- нитка
 threat -- угроза
 threaten -- грозить, угрожать
-threatened -- находящийся в угрожаемом положении !NEW!
+threatened -- находящийся в угрожаемом положении 
 threatening -- Угроза -ing 
 three -- три
 threshold -- порог
-threw -- бросал (не flung) !NEW!
+threw -- бросал (не flung) 
 thrice -- трижды
 thrill -- волновать
-thrilled -- возбуждённый !NEW!
+thrilled -- возбуждённый 
 thrilling -- захватывающий -ing
 thrive -- преуспевать; буйно, пышно расти
 throat -- горло
@@ -7522,7 +7523,7 @@ tide -- прилив и отлив
 tidy -- чистый, аккуратный, убирать, приводить в порядок
 tidying -- уборка
 tie -- связь, связывать, галстук
-tied -- связанный !NEW!
+tied -- связанный 
 ties -- связи (от tie)
 tiger -- тигр
 tight -- плотный, крепкий, тугой
@@ -7581,7 +7582,7 @@ tonight -- сегодня вечером
 too -- слишком, тоже
 took -- брал (от take)
 tool -- инструмент
-tools -- инструменты !NEW!
+tools -- инструменты 
 tooth -- зуб
 toothache -- зубная боль
 top -- верх, верхушка
@@ -7589,9 +7590,9 @@ topic -- тема
 topmost -- самый верхний, самый важный
 topple -- валиться
 torch -- факел
-torches -- фонарики !NEW!
-tore -- рвал !NEW!
-torn -- оборванный (не worn) !NEW!
+torches -- фонарики 
+tore -- рвал 
+torn -- оборванный (не worn) 
 torrent -- поток
 tortoise -- черепаха
 torture -- пытать, пытка (не attempt)
@@ -7959,7 +7960,7 @@ viewpoint -- точка зрения
 views -- Представления(виды) 
 vigilance -- бдительность
 vigorous -- сильный v-
-vigorously -- энергично !NEW!
+vigorously -- энергично 
 vigour -- сила, энергия v-
 village -- деревня
 villager -- сельский житель
@@ -7998,7 +7999,7 @@ wag -- махать, трясти
 wage -- заработная плата
 wager -- держать пари, рисковать
 waggoner -- Извозчик 
-wagon -- повозка !NEW!
+wagon -- повозка 
 wail -- вопль, вой, вопить, выть
 wailed -- Вопил 
 wailing -- Вопящий -ing 
@@ -8024,7 +8025,7 @@ wan -- бледный, изнуренный
 wand -- Палочка 
 wander -- бродить, блуждать
 wanderer -- странник (не stranger)
-wandering -- блуждание !NEW!
+wandering -- блуждание 
 want -- хотеть, желать, нуждаться в
 wanted -- хотел, желанный (от want)
 wanting -- Желание 
@@ -8035,7 +8036,7 @@ wardrobe -- гардероб
 warehouse -- склад, пакгауз
 warily -- осторожно
 warm -- теплый, согревать
-warmly -- тепло (-- как? -- тепло!) !NEW!
+warmly -- тепло (-- как? -- тепло!) 
 warmth -- тепло, теплота, сердечность
 warn -- предупреждать w-
 warning -- предупреждение
@@ -8092,7 +8093,7 @@ week -- неделя
 weekend -- выходные
 weekly -- еженедельный, еженедельно
 weep -- плакать
-weeping -- Плач *e-ing 
+weeping -- Плач *ing 
 weigh -- взвешивать, весить
 weight -- вес, тяжесть, груз
 weighty -- веский
@@ -8156,7 +8157,7 @@ wig -- парик
 wild -- исступленный, безумный
 wilderness -- пустыня, глушь
 wildly -- Дико 
-Wilfrid -- Вилфрид !NEW!
+Wilfrid -- Вилфрид 
 will -- вспомогательный глагол будущего времени
 william -- Уильям 
 willing -- готовый, охотно делающий что-либо
@@ -8172,7 +8173,7 @@ winds -- Ветры
 windy -- ветреный
 wine -- вино, винный, пить вино
 wing -- крыло
-wings -- крылья !NEW!
+wings -- крылья 
 wink -- моргать, мигать, моргание, мигание
 winner -- победитель
 winning -- выигрывающий, победа (-ing)
@@ -8196,7 +8197,7 @@ without -- без
 witness -- свидетель
 witnessed -- Засвидетельствованный 
 wits -- Остроумие 
-wizard -- колдун, специалист своего дела !NEW!
+wizard -- колдун, специалист своего дела 
 wizards -- Волшебники 
 woke -- будил (от wake)
 woken -- разбуженный (от wake)
@@ -8208,7 +8209,7 @@ won -- победил, побежденный (от win)
 wonder -- удивляться
 wonderful -- замечательный, чудесный
 wonderfully -- Чудесно w- TR!)
-wondering -- удивляющийся, интересующийся (-ing) !NEW!
+wondering -- удивляющийся, интересующийся (-ing) 
 wood -- лес, древесина, дрова
 wooden -- деревянный
 woodland -- лесистая местность
@@ -8218,7 +8219,7 @@ woollen -- шерстяной
 word -- слово, обещание
 wording -- редакция, форма выражения, формулировка -ing
 words -- слова (от word)
-wore -- носил, изнашивал (w-) !NEW!
+wore -- носил, изнашивал (w-) 
 work -- работать, делать, работа, труд
 worked -- работал, сработанный (от work)
 worker -- рабочий
@@ -8229,7 +8230,7 @@ workshop -- мастерская
 world -- мир, свет
 worlds -- Миры 
 worm -- червь, глист, ничтожество (перен.)
-worn -- потёртый, изношенный !NEW!
+worn -- потёртый, изношенный 
 worry -- беспокоиться
 worse -- хуже (от bad)
 worship -- поклоняться (не regards)
@@ -8261,7 +8262,7 @@ yacht -- яхта
 yard -- ярд, двор
 yawn -- зевать, зевота
 ye -- Вы 
-yeah -- да !NEW!
+yeah -- да 
 year -- год
 yearling -- козленок, ягненок
 yell -- пронзительный крик, кричать, вопить
@@ -8273,7 +8274,7 @@ yield -- приносить
 yielded -- Выданный 
 yielding -- Выдающий(уступающий) -ing 
 yoke -- иго, ярмо
-yonder -- вон тот !NEW!
+yonder -- вон тот 
 you -- вы, ты
 young -- молодой
 younger -- моложе (от young)
@@ -8360,7 +8361,7 @@ var MyApp = /** @class */ (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\Apps\Wordex\src\app\app.html"*/'<ion-menu [content]="content">\n\n  <ion-content text-center>\n\n    <h2 class="mono">WORDEX</h2>\n\n    <h6><b class="eina">v. 3.0</b></h6>\n\n    <ion-list>\n\n      <ion-item *ngFor="let page of pages" (click)="pushTo(page);" menuClose>\n\n        <ion-icon name="{{ page.icon }}"></ion-icon><span class="monts b"> {{ page.title }}</span></ion-item>\n\n    </ion-list>\n\n\n\n  </ion-content>\n\n\n\n  <ion-footer text-center>\n\n      <h6 class="eina"><a href="https://github.com/danmoop">Github</a></h6>\n\n      <h6 class="eina">dandurnev1@gmail.com</h6>\n\n  </ion-footer>\n\n\n\n</ion-menu>\n\n\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"D:\Apps\Wordex\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\apps\wordex\src\app\app.html"*/'<ion-menu [content]="content">\n\n  <ion-content text-center>\n\n    <h2 class="mono">WORDEX</h2>\n\n    <h6><b class="eina">v. 3.0</b></h6>\n\n    <ion-list>\n\n      <ion-item *ngFor="let page of pages" (click)="pushTo(page);" menuClose>\n\n        <ion-icon name="{{ page.icon }}"></ion-icon><span class="monts b"> {{ page.title }}</span></ion-item>\n\n    </ion-list>\n\n\n\n  </ion-content>\n\n\n\n  <ion-footer text-center>\n\n      <h6 class="eina"><a href="https://github.com/danmoop">Github</a></h6>\n\n      <h6 class="eina">dandurnev1@gmail.com</h6>\n\n  </ion-footer>\n\n\n\n</ion-menu>\n\n\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"D:\apps\wordex\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);

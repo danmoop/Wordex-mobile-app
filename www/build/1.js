@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 275:
+/***/ 276:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WordTestPageModule", function() { return WordTestPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__word_test__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__word_test__ = __webpack_require__(281);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var WordTestPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 280:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -163,7 +163,7 @@ var WordTestPage = /** @class */ (function () {
     };
     WordTestPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-word-test',template:/*ion-inline-start:"D:\Apps\Wordex\src\pages\word-test\word-test.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>\n\n      <span class="w monts">Тест</span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding id="mainScreen" text-center>\n\n  <div class="uk-animation-fade">\n\n    <hr style="background: #777;">\n\n\n\n    <div *ngIf="words.length == 0 && started == true">\n\n      <img src="./assets/imgs/medal.png" alt="">\n\n      <h2 class="w">Поздравляем! Вы прошли тест!</h2>\n\n      <h2 class="w">Отмечайте больше слов для повторения, чтобы пройти еще один тест!</h2>\n\n    </div>\n\n\n\n    <div *ngIf="words.length == 0 && !started">\n\n      <img src="./assets/imgs/empty-box-open.png" alt="">\n\n      <h2 class="w">Нет слов для тестирования! Добавьте несколько в секцию "Для повторения" и возвращайтесь!</h2>\n\n    </div>\n\n\n\n    <div *ngIf="words.length != 0 && !started">\n\n      <h2 class="w" *ngIf="started == false">Вы готовы начать?</h2>\n\n      <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start(\'en-ru\');">EN -> RU</button>\n\n      <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start(\'ru-en\');">RU -> EN</button>\n\n    </div>\n\n  </div>\n\n\n\n  <div *ngIf="randomWord != null && type == \'en-ru\'">\n\n    <ion-card class="c" text-center>\n\n      <ion-card-header>\n\n        <span class="w b fz-25 eina">{{ randomWord.enWord }}</span>\n\n      </ion-card-header>\n\n    </ion-card>\n\n    <hr>\n\n\n\n    <ion-list>\n\n      <ion-item color="light" round class="monts b" *ngFor="let btn of buttons" style="margin-top: 35px;" (click)="checkWordENRU(btn);">\n\n        {{ btn.ruWord }}\n\n      </ion-item>\n\n    </ion-list>\n\n  </div>\n\n\n\n\n\n  <div *ngIf="randomWord != null && type == \'ru-en\'">\n\n    <ion-card class="c" text-center>\n\n      <ion-card-content>\n\n        <span class="w b fz-25 monts">{{ randomWord.ruWord }}</span>\n\n      </ion-card-content>\n\n    </ion-card>\n\n    \n\n    <ion-list>\n\n      <ion-item color="light" round class="monts b" *ngFor="let btn of buttons" style="margin-top: 35px;" (click)="checkWordRUEN(btn);">\n\n        {{ btn.enWord }}\n\n      </ion-item>\n\n    </ion-list>\n\n\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\Apps\Wordex\src\pages\word-test\word-test.html"*/,
+            selector: 'page-word-test',template:/*ion-inline-start:"D:\apps\wordex\src\pages\word-test\word-test.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>\n\n      <span class="w monts">Тест</span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding id="mainScreen" text-center>\n\n  <div class="uk-animation-fade">\n\n    <hr style="background: #777;">\n\n\n\n    <div *ngIf="words.length == 0 && started == true">\n\n      <img src="./assets/imgs/medal.png" alt="">\n\n      <h2 class="w">Поздравляем! Вы прошли тест!</h2>\n\n      <h2 class="w">Отмечайте больше слов для повторения, чтобы пройти еще один тест!</h2>\n\n    </div>\n\n\n\n    <div *ngIf="words.length == 0 && !started">\n\n      <img src="./assets/imgs/empty-box-open.png" alt="">\n\n      <h2 class="w">Нет слов для тестирования! Добавьте несколько в секцию "Для повторения" и возвращайтесь!</h2>\n\n    </div>\n\n\n\n    <div *ngIf="words.length != 0 && !started">\n\n      <h2 class="w" *ngIf="started == false">Вы готовы начать?</h2>\n\n      <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start(\'en-ru\');">EN -> RU</button>\n\n      <button *ngIf="started == false" ion-button color="secondary" round outline style="border-width: 2px;" (click)="start(\'ru-en\');">RU -> EN</button>\n\n    </div>\n\n  </div>\n\n\n\n  <div *ngIf="randomWord != null && type == \'en-ru\'">\n\n    <ion-card class="c" text-center>\n\n      <ion-card-header>\n\n        <span class="w b fz-25 eina">{{ randomWord.enWord }}</span>\n\n      </ion-card-header>\n\n    </ion-card>\n\n    <hr>\n\n\n\n    <ion-list>\n\n      <ion-item color="light" round class="monts b" *ngFor="let btn of buttons" style="margin-top: 35px;" (click)="checkWordENRU(btn);">\n\n        {{ btn.ruWord }}\n\n      </ion-item>\n\n    </ion-list>\n\n  </div>\n\n\n\n\n\n  <div *ngIf="randomWord != null && type == \'ru-en\'">\n\n    <ion-card class="c" text-center>\n\n      <ion-card-content>\n\n        <span class="w b fz-25 monts">{{ randomWord.ruWord }}</span>\n\n      </ion-card-content>\n\n    </ion-card>\n\n    \n\n    <ion-list>\n\n      <ion-item color="light" round class="monts b" *ngFor="let btn of buttons" style="margin-top: 35px;" (click)="checkWordRUEN(btn);">\n\n        {{ btn.enWord }}\n\n      </ion-item>\n\n    </ion-list>\n\n\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\apps\wordex\src\pages\word-test\word-test.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], WordTestPage);
